@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+
+
+html{
+    font-family: Verdana,sans-serif,Verdana Unicode MS,SimSun;
+
+    color:#50555F;
+    font-size: 12px;
+    line-height:14px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+    width:100%;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+#mgt_page_body {
+    background:url(../img/gui/welcome_bg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+#loadingOverlay {
+    background:  #fff url('../../js/dojoBase/dijit/themes/claro/images/loadingAnimation.gif') no-repeat 10px 23px;
+
+    /*display: none;*/
+}
+
+.pageOverlay {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1001;
+    display: block;
+}
+
+.loadingMessage {
+    padding: 25px 40px;
+    color: #999;
+}
+
+.text_red{
+    color:#ff0000;
+}

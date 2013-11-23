@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+
+.gridx {
+    height: 100%;
+    width: 100%;
+}
+
+
+.claro .gridxCell{
+    font-size: 12px;
+}
+
+.gridxBarQuickFilter{
+    font-size: 12px;
+}
+
+.gridxPagerDescriptionTD{
+    font-size: 12px;
+}
+
+.gridxPagerStepperTD{
+    font-size: 12px;
+}
+
+.gridxPagerSizeSwitchTD{
+    font-size: 12px;
+}
+
+.gc_gridtoolbar{
+    height: 20px;
+    font-size: 12px;
+}

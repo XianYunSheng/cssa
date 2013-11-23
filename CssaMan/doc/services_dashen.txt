@@ -1,0 +1,95 @@
+1.用户 user
+User
++	GET    /user/	               获得所有user的一个json array.  并且实现filtering和sorting    
++	GET    /user/$userId	获得id为userid的user
++	PUT    /user/                     新建一个user
+
+// 新建user也就是注册,  传递一个json obj 如下 {id:"", username:string, email:string, passwd:string} , 其后三个属性为必填项，not null。 其他的属性可以随便添加，简便起见，没有写。 可根据数据库扩充
+// 新建user, put请求后。 并创建操作后， 返回一个 json obj 如下 {success: true, error:""} 或者 {success: false, error:""} 或者 {success: false, error:"user_exists"} , 后一种说明该用户名存在，无法创建。
+
+
+
++	PUT    /user/$userId        更新id为userid的user
++	DELETE /user/$userId	删除id为userid的user
+
++   GET    /user/$userId/pw/       获得id为userid的user的password属性
++   PUT    /user/$userId/pw/       修改id为userid的user的password属性
+ 
++POST     /passwdreset/              postdata: {id:userid, email:email}  
+
+json obj：
+{
+uid: long,
+username:string,
+dispname:string, //显示名
+first name:string,
+last name:string,
+email:string,
+tel:string,
+add:string,
+zip:string,
+im: [qq:string, skype:string],  //json arry
+gender:string,  //F, M or A
+birthday: long, //unix 毫秒时间戳
+college:string,
+major:string,
+position:string //学联职位
+article: string// 发文登记，是否需要审核？ 待讨论
+}
+
+
+2. 登入/ 登出
++   POST  /login/                                                          
+json obj:
+{
+username: string
+password:string
+phpsessid:string   // 用在判断用户在线和不能同时异地登录，以及后台的用户登录log？
+}
+返回
+{
+success: true/false, 
+uid: long//该user的id
+}
+
+
++ POST  /logout/
+json obj:
+{
+uid: long  // user的id
+phpsessid:string   
+}
+
+3. article管理
++	GET    /article/	               获得所有article的一个json array.  并且实现filtering和sorting 和paging   
++	GET    / article /$ article Id	获得id为articleid的article
++	PUT    / article /                             新建一个article
++	PUT    / article /$articleid            更新id为articleid            的article
++	DELETE / article /$articleid	删除id为articleid            的article
+json obj:
+
+{
+articleId: 1,  // article的id
+		answer: [{id:3, title:"回复第一篇", creuser:2}],
+		title:"第一篇",
+		content:"This is the first aticle",
+		creuser: "dashen", //创建者username
+		credate:123123123, //创建时间戳 unix毫秒   
+		moduser:"",//修改者 userid
+		moddate:"" ,//修改时间戳
+		refer:[{userid:2, dispname:"晓友", username:"xiaoyou"},{userid:3, dispname:"吉晨", username:"jack" }],  // 涉及人或者参与者等，json array
+		state:"A", //状态，例如审核状态等
+}
+
+
+
+
+4. article中间编辑富文本和插入图片, 如果有这个需求， 可能需要jack 读一下这个http://dojotoolkit.org/reference-guide/1.8/dojox/editor/plugins/LocalImage.html#dojox-editor-plugins-localimage
+
+
+
+
+
+
+
+

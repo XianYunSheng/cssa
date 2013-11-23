@@ -1,0 +1,10 @@
+CREATE TABLE `pre_common_member` (
+  `uid` mediumint(8) unsigned NOT NULL auto_increment,
+  `email` char(40) NOT NULL default '',
+  `username` char(15) NOT NULL default '',
+  `password` char(32) NOT NULL default '',
+  `adminid` tinyint(1) NOT NULL default '0',
+  `groupid` smallint(6) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`uid`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM
