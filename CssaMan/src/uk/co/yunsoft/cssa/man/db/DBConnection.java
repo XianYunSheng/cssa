@@ -7,17 +7,39 @@ import javax.sql.DataSource;
 
 public class DBConnection {
 
-//	public DataSource getDataSource(){
-//		Context initCtx;
-//		try {
-//			initCtx = new InitialContext();
-//		} catch (NamingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		Context envCtx = (Context) initCtx.lookup("java:comp/env");
-//
-//		DataSource ds = (DataSource)envCtx.lookup("jdbc/CssaManDB");
-//	}
+	private static DBConnection instance;
+
+	private Context initCtx;
+
+	private DataSource ds;
+
+	private DBConnection() {
+		try {
+			initCtx = new InitialContext();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+
+		try {
+
+			Context envCtx = (Context) initCtx.lookup("java:comp/env");
+			ds = (DataSource) envCtx.lookup("jdbc/CssaManDB");
+
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static DBConnection getInstance() {
+		if (instance == null) {
+			instance = new DBConnection();
+		}
+		return instance;
+	}
+
+	public DataSource getDataSource() {
+
+		return ds;
+	}
 }

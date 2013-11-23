@@ -2,6 +2,7 @@ package uk.co.yunsoft.cssa.man;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -54,7 +55,9 @@ public class User {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json")
 	public StatusObject addUser(UserInfo user) {
-		 
+		
+		user.uid = UUID.randomUUID().toString();
+		
 		System.out.println("username = "+ user.password);
 		
 		return new StatusObject(true);
