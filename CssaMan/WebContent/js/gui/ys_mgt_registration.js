@@ -27,9 +27,9 @@ function ys_doShowRegistration(){
 	    				var validate_uri = "";
 	    				
 	    				if(YS_TEST){
-	    					validate_uri = "../test_res/passwdreset.json";
+	    					validate_uri = "/" + SYS_PATH +"/test_res/passwdreset.json";
 	    				}else{
-	    					validate_uri = "http://www.cssa.yunsoft.co.uk/taskman/usernamevalidate/";
+	    					validate_uri = "/" + SYS_PATH +"/api/usernamevalidate/";
 	    				}
 	    				
 	    				
@@ -118,9 +118,9 @@ function ys_doRegDlg(){
 				var uri = "";
 				
 				if(YS_TEST){
-					uri = "../test_res/registration.json";
+					uri = "/" + SYS_PATH +"/test_res/registration.json";
 				}else{
-					uri = "http://www.cssa.yunsoft.co.uk/taskman/user/id/";
+					uri = "/" + SYS_PATH +"/api/user/";
 				}
 				
 				var put_data = json.toJson({uid:"", username:username_field.get("value"), email:email_field.get("value"), passwd:passwd_field.get("value") });

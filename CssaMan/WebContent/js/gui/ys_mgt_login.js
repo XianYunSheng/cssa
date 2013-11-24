@@ -34,9 +34,9 @@ function ys_doLogin() {
 	var url = "";
 	
 	if(YS_TEST){
-		url = "../test_res/login.json";
+		url = "/" + SYS_PATH +"/test_res/login.json";
 	}else{
-		url = "/api/login/";
+		url = "/" + SYS_PATH +"/api/login/";
 	}
 	
 	 
@@ -77,9 +77,9 @@ function ys_doLogin() {
 
 											var uri_user_info = "";
 											if(YS_TEST){
-												uri_user_info = "../test_res/login_user.json";
+												uri_user_info = "/" + SYS_PATH +"/test_res/login_user.json";
 											}else{
-												uri_user_info = "http://www.cssa.yunsoft.co.uk/taskman/user/id/" + user_data.uid;
+												uri_user_info = "/" + SYS_PATH +"/api/user/" + user_data.uid;
 											}
 											
 										 
@@ -235,9 +235,9 @@ function ys_doPasswdDlg() {
 				var uri = "";
 				
 				if(YS_TEST){
-					uri = "../test_res/passwdreset.json";
+					uri = "/" + SYS_PATH +"/test_res/passwdreset.json";
 				}else{
-					uri = "http://www.cssa.yunsoft.co.uk/taskman/userrestpw/";
+					uri = "/" + SYS_PATH +"/api/userrestpw/";
 				}
 				
 				

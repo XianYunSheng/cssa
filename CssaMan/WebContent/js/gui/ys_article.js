@@ -100,8 +100,11 @@ function ys_start_article_grid() {
 				data : demo_data
 			});
 		} else {
+			
+			var uri = "/" + SYS_PATH + "/api/article/";
+			
 			master_store = new Observable(JsonRest({
-				target : "http://www.cssa.yunsoft.co.uk/taskman/article/id/",
+				target : uri,
 				headers: {                     // This is required to stop the
 		 			"X-Requested-With": "" // server from rejecting the 
 		 		},
@@ -567,9 +570,9 @@ function ys_set_user_list_in_article_refer(reg, xhr, common, Memory,
 	var uri = "";
 
 	if (YS_TEST) {
-		uri = "../test_res/users.json";
+		uri = "/" + SYS_PATH + "/test_res/users.json";
 	} else {
-		uri = "http://www.cssa.yunsoft.co.uk/taskman/user/id/";
+		uri = "/" + SYS_PATH + "/api/user/";
 	}
 
 	xhr(uri, {
