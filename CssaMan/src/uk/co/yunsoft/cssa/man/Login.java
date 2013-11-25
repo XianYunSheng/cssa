@@ -21,7 +21,12 @@ public class Login {
 		
 		String uid = us.login(userinfo.username, userinfo.password);
 		
+		StatusObject so = new StatusObject();
+		
+		
+		
 		if(uid==null)
+			
 		
 		return  new StatusObject(false);
 		

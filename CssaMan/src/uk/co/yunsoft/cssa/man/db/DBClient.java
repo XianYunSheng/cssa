@@ -74,7 +74,7 @@ public class DBClient {
 
 		} catch (InstantiationException e) {
 			e.printStackTrace();
-			
+
 			return null;
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
@@ -110,40 +110,113 @@ public class DBClient {
 		return newObject;
 
 	}
-	
-	public int insertObject(Class object, String tableName){
+
+	public int insertObject(Class object, String tableName) {
 		Field[] fields = object.getFields();
-		
+
 		StringBuilder sqlBuilder = new StringBuilder();
-		
+
 		sqlBuilder.append("insert into ").append(tableName).append(" (");
-		
-		for(Field f: fields){
+
+		for (Field f : fields) {
 			sqlBuilder.append(f.getName()).append(",");
-			
+
 		}
 		sqlBuilder.deleteCharAt(sqlBuilder.lastIndexOf(","));
 		sqlBuilder.append(") values (");
-		
-		for(Field f: fields){
+
+		for (int i = 0; i < fields.length; i++) {
 			sqlBuilder.append("?,");
-			
+
 		}
 		sqlBuilder.deleteCharAt(sqlBuilder.lastIndexOf(",")).append(")");
-		
+
 		try {
-			PreparedStatement ps = dbConnection.prepareStatement(sqlBuilder.toString());
-			for(int i=0;i<fields.length;i++){
+			PreparedStatement ps = dbConnection.prepareStatement(sqlBuilder
+					.toString());
+			for (int i = 0; i < fields.length; i++) {
 				Field f = fields[i];
-				//if(f. instanceof String)
+				String type = f.getType().getName();
+				if (type.equals("java.lang.String")) {
+					ps.setString(i, (String) f.get(object));
+				} else if (type.equals("int")) {
+					ps.setInt(i, f.getInt(object));
+				}
 			}
 			
+			int result = ps.executeUpdate();
+			
+			return result;
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
+			return -1;
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			return -1;
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			return -1;
 		}
-		
-		return 0;
+
+	
+	}
+	
+	
+	public int updateObject(Class object, String condition,String tableName){
+		Field[] fields = object.getFields();
+
+		StringBuilder sqlBuilder = new StringBuilder();
+
+		sqlBuilder.append("update ").append(tableName).append(" set");
+
+		for (Field f : fields) {
+			sqlBuilder.append(f.getName()).append("=?,");
+
+		}
+		sqlBuilder.deleteCharAt(sqlBuilder.lastIndexOf(","));
+		sqlBuilder.append(" "+condition);
+
+		try {
+			PreparedStatement ps = dbConnection.prepareStatement(sqlBuilder
+					.toString());
+			for (int i = 0; i < fields.length; i++) {
+				Field f = fields[i];
+				String type = f.getType().getName();
+				if (type.equals("java.lang.String")) {
+					ps.setString(i, (String) f.get(object));
+				} else if (type.equals("int")) {
+					ps.setInt(i, f.getInt(object));
+				}
+			}
+			
+			int result = ps.executeUpdate();
+			
+			return result;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			return -1;
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			return -1;
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			return -1;
+		}
+
 	}
 
 	public void close() throws SQLException {

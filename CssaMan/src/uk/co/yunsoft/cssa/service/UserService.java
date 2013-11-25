@@ -27,28 +27,56 @@ public class UserService {
 		return user.uid;
 	}
 
-	public boolean usernameValidate(String username){
-		try{
+	public boolean usernameValidate(String username) {
+		try {
 			dbClient = new DBClient();
-			
-			UserInfo user = (UserInfo)dbClient.queryForObject(UserInfo.class, "tsk_users", " where username='"+username+"'");
-			
+
+			UserInfo user = (UserInfo) dbClient.queryForObject(UserInfo.class,
+					"tsk_users", " where username='" + username + "'");
+
 			dbClient.close();
-			
-			if(user == null)
+
+			if (user == null)
 				return true;
 			else
 				return false;
-				
-			
-		}catch(SQLException e){
+
+		} catch (SQLException e) {
 			return false;
 		}
 	}
-	
-	public String addUser(UserInfo user){
+
+	public String addUser(UserInfo user) {
 		user.uid = UUID.randomUUID().toString();
+		try {
+			dbClient = new DBClient();
+
+			int result = dbClient.insertObject(user.getClass(), "tsk_users");
+
+			dbClient.close();
+
+			if (result != -1)
+				return user.uid;
+
+		} catch (SQLException e) {
+			return null;
+		}
 		return null;
-		
+
+	}
+
+	public UserInfo getUser(String uid) {
+		try {
+			dbClient = new DBClient();
+
+			UserInfo user = (UserInfo) dbClient.queryForObject(UserInfo.class,
+					"tsk_users", " where uid='" + uid + "'");
+
+			return user;
+
+		} catch (SQLException e) {
+			return null;
+		}
+
 	}
 }
