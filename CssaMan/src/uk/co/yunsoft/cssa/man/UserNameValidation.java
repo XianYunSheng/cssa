@@ -5,8 +5,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import uk.co.yunsoft.cssa.man.object.StatusObject;
-import uk.co.yunsoft.cssa.man.object.UserInfo;
+import uk.co.yunsoft.cssa.man.vo.StatusObject;
+import uk.co.yunsoft.cssa.man.vo.UserJSObject;
 import uk.co.yunsoft.cssa.service.UserService;
 
 @Path("/usernamevalidation")
@@ -17,7 +17,7 @@ public class UserNameValidation {
 	@POST
 	@Produces("application/json")
 	@Consumes("application/json")
-	public StatusObject validate(UserInfo user){
+	public StatusObject validate(UserJSObject user){
 		
 		userService = new UserService();
 		

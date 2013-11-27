@@ -1,6 +1,5 @@
 package uk.co.yunsoft.cssa.man;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,28 +13,28 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import uk.co.yunsoft.cssa.man.object.StatusObject;
 import uk.co.yunsoft.cssa.man.object.UserInfo;
+import uk.co.yunsoft.cssa.man.vo.LoginJSObject;
+import uk.co.yunsoft.cssa.man.vo.StatusObject;
+import uk.co.yunsoft.cssa.man.vo.UserJSObject;
+import uk.co.yunsoft.cssa.service.UserService;
 
 @Path("/user")
 public class User {
-//	String id;
-//
-//	public User(String id) {
-//		this.id = id;
-//	}
+
+	UserService userService;
 
 	@GET
 	@Produces("application/json")
 	public List<UserInfo> getUsers() {
-		
-			UserInfo u1 = new UserInfo("test1","xr");
-			UserInfo u2 = new UserInfo("test","rr");
-			List<UserInfo> users = new ArrayList<UserInfo>();
-			users.add(u1);
-			users.add(u2);
-			return users;
-		
+
+		// UserInfo u1 = new UserInfo("test1","xr");
+		// UserInfo u2 = new UserInfo("test","rr");
+		// List<UserInfo> users = new ArrayList<UserInfo>();
+		// users.add(u1);
+		// users.add(u2);
+		return null;
+
 	}
 
 	// @PUT
@@ -47,34 +46,62 @@ public class User {
 	@Path("{user}")
 	@GET
 	@Produces("application/json")
-	public UserInfo getUserById(@PathParam("user") String uid) {
-		return new UserInfo("fsdfds",uid);
+	public UserJSObject getUserById(@PathParam("user") String uid) {
+		userService = new UserService();
+
+		UserInfo user = userService.getUser(uid);
+
+		UserJSObject userJson = new UserJSObject();
+
+		if (user != null) {
+			userJson.uid = user.getUid();
+			userJson.email = user.getEmail();
+			userJson.username = user.getUsername();
+			return userJson;
+		} else
+			return new UserJSObject();
 	}
-	
+
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json")
-	public StatusObject addUser(UserInfo user) {
+	public LoginJSObject addUser(UserJSObject user) {
+
+		userService = new UserService();
 		
-		user.uid = UUID.randomUUID().toString();
+		UserInfo userToAdd = new UserInfo();
 		
-		System.out.println("username = "+ user.password);
+		userToAdd.setEmail(user.email);
 		
-		return new StatusObject(true);
+		userToAdd.setPassword(user.password);
+		
+		userToAdd.setUsername(user.username);
+		
+		String uid = userService.addUser(userToAdd);
+
+		LoginJSObject login = new LoginJSObject();
+		
+		if(uid != null){
+			login.uid = uid;
+			login.success = true;
+		}
+		
+		
+		return login;
 	}
-	
+
 	@Path("{user}")
 	@DELETE
 	@Produces("application/json")
-	public StatusObject deleteUser(@PathParam("user") String uid){
-		System.out.println("uid = "+uid);
+	public StatusObject deleteUser(@PathParam("user") String uid) {
+		System.out.println("uid = " + uid);
 		return new StatusObject(true);
 	}
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json")
-	public StatusObject getUserInfomation(UserInfo user){
+	public StatusObject getUserInfomation(UserInfo user) {
 		return new StatusObject(false);
 	}
 }

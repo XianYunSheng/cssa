@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 import uk.co.yunsoft.cssa.man.db.DBClient;
+import uk.co.yunsoft.cssa.man.exception.CSSASystemException;
 import uk.co.yunsoft.cssa.man.object.UserInfo;
 
 public class UserService {
@@ -24,7 +25,7 @@ public class UserService {
 		} catch (SQLException e) {
 			return null;
 		}
-		return user.uid;
+		return user.getUid();
 	}
 
 	public boolean usernameValidate(String username) {
@@ -47,7 +48,7 @@ public class UserService {
 	}
 
 	public String addUser(UserInfo user) {
-		user.uid = UUID.randomUUID().toString();
+		user.setUid(UUID.randomUUID().toString());
 		try {
 			dbClient = new DBClient();
 
@@ -56,7 +57,7 @@ public class UserService {
 			dbClient.close();
 
 			if (result != -1)
-				return user.uid;
+				return user.getUid();
 
 		} catch (SQLException e) {
 			return null;
@@ -74,7 +75,7 @@ public class UserService {
 
 			return user;
 
-		} catch (SQLException e) {
+		} catch (CSSASystemException e) {
 			return null;
 		}
 

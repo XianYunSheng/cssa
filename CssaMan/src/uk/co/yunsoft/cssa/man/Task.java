@@ -9,8 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import uk.co.yunsoft.cssa.man.object.StatusObject;
 import uk.co.yunsoft.cssa.man.object.TaskInfo;
+import uk.co.yunsoft.cssa.man.vo.StatusObject;
 
 @Path("/task")
 public class Task {

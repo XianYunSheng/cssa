@@ -1,4 +1,4 @@
-package uk.co.yunsoft.cssa.man.object;
+package uk.co.yunsoft.cssa.man.vo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;

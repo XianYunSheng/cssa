@@ -11,6 +11,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import uk.co.yunsoft.cssa.man.exception.CSSASystemException;
+
 public class DBClient {
 
 	private Connection dbConnection = null;
@@ -19,11 +21,18 @@ public class DBClient {
 
 	private ResultSet rs = null;
 
-	public DBClient() throws SQLException {
+	public DBClient() throws CSSASystemException {
 
 		DataSource ds = DBConnection.getInstance().getDataSource();
 
-		dbConnection = ds.getConnection();
+		try {
+			dbConnection = ds.getConnection();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+			throw new CSSASystemException("DB Connection");
+		}
 
 	}
 
@@ -119,7 +128,16 @@ public class DBClient {
 		sqlBuilder.append("insert into ").append(tableName).append(" (");
 
 		for (Field f : fields) {
-			sqlBuilder.append(f.getName()).append(",");
+			try {
+				if(f.get(object)!=null)
+				sqlBuilder.append(f.getName()).append(",");
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}
 		sqlBuilder.deleteCharAt(sqlBuilder.lastIndexOf(","));
@@ -136,13 +154,20 @@ public class DBClient {
 					.toString());
 			for (int i = 0; i < fields.length; i++) {
 				Field f = fields[i];
-				String type = f.getType().getName();
+				if(f.get(object)!=null){				
+					String type = f.getType().getName();
+				
 				if (type.equals("java.lang.String")) {
 					ps.setString(i, (String) f.get(object));
 				} else if (type.equals("int")) {
 					ps.setInt(i, f.getInt(object));
+				}else if(type.equals("long")){
+					ps.setLong(i, f.getLong(object));
 				}
 			}
+			
+		}
+
 			
 			int result = ps.executeUpdate();
 			
