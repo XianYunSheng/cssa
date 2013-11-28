@@ -36,6 +36,8 @@ define({
         welcome:"欢迎",
         article_mgt:"条目管理",
         calendar_mgt:"日历管理",
+        user_mgt:"用户管理",
+        master_mgt:"主数据",
         team_calendar:"团队日历",
         public_calendar:"公共日历",
         event_properties:"事件面板",

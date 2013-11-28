@@ -123,7 +123,7 @@ function ys_doRegDlg(){
 					uri = "/" + SYS_PATH +"/api/user/";
 				}
 				
-				var put_data = json.toJson({uid:"", username:username_field.get("value"), email:email_field.get("value"), passwd:passwd_field.get("value") });
+				var put_data = json.toJson({id:"", username:username_field.get("value"), email:email_field.get("value"), passwd:passwd_field.get("value") });
 
 				
 				console.log("PUT 数据 ： ", put_data);

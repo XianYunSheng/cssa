@@ -1,0 +1,62 @@
+[ {
+			id : 1, // article的id
+			answer : [ {
+				id : 3,
+				title : "回复第一篇",
+				creuser : 2
+			} ],
+			title : "第一篇",
+			content : "This is the first aticle",
+			creuser : "dashen", // 创建者username
+			credate : 123123123, // 创建时间戳 unix毫秒
+			moduser : "",// 修改者 userid
+			moddate : "",// 修改时间戳
+			refer : [ {
+				userid : 2,
+				dispname : "晓友",
+				username : "dashen"
+			}, {
+				userid : 3,
+				dispname : "吉晨",
+				username : "jack"
+			} ], // 涉及人或者参与者等，json array
+			state : "A", // 状态，例如审核状态等
+		}, {
+			id : 2, // article的id
+			answer : [],
+			title : "第二篇",
+			content : "This is the answer of the first aticle",
+			creuser : "dashen", // 创建者username
+			credate : 123223123, // 创建时间戳 unix毫秒
+			moduser : "",// 修改者 userid
+			moddate : "",// 修改时间戳
+			refer : [ {
+				userid : 2,
+				dispname : "晓友",
+				username : "shaun"
+			}, {
+				userid : 3,
+				dispname : "吉晨",
+				username : "jack"
+			} ], // 涉及人或者参与者等，json array
+			state : "A", // 状态，例如审核状态等
+		}, {
+			id : 3, // article的id
+			answer : [],
+			title : "回复第一篇",
+			content : "This is the answer of the first aticle",
+			creuser : "xiaoyou", // 创建者userid
+			credate : 123123123, // 创建时间戳 unix毫秒
+			moduser : "",// 修改者 userid
+			moddate : "",// 修改时间戳
+			refer : [ {
+				userid : 2,
+				dispname : "晓友",
+				username : "shaun"
+			}, {
+				userid : 3,
+				dispname : "吉晨",
+				username : "jack"
+			} ], // 涉及人或者参与者等，json array
+			state : "A", // 状态，例如审核状态等
+		} ]

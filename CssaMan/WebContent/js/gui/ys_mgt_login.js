@@ -72,21 +72,21 @@ function ys_doLogin() {
 
 										if (user_data.success) {
 
-											console.log("user_data.uid = ",
-													user_data.uid);
+											console.log("user_data.id = ",
+													user_data.id);
 
 											var uri_user_info = "";
 											if(YS_TEST){
 												uri_user_info = "/" + SYS_PATH +"/test_res/login_user.json";
 											}else{
-												uri_user_info = "/" + SYS_PATH +"/api/user/" + user_data.uid;
+												uri_user_info = "/" + SYS_PATH +"/api/user/" + user_data.id;
 											}
 											
 										 
 											var user_def = {
 
 												"success" : true,
-												"uid" : "",
+												"id" : "",
 												"username" : "",
 												"dispname" : "",
 												"lastname" : "",
@@ -117,7 +117,7 @@ function ys_doLogin() {
 																		.log(info_data);
 																if (info_data) {
 
-																	user_def.uid = info_data.uid;
+																	user_def.id = info_data.id;
 																	user_def.username = info_data.username;
 																	user_def.dispname = info_data.dispname;
 																	user_def.lastname = info_data.lastname;

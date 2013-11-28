@@ -1,6 +1,6 @@
 [
 {
- "uid":1,
+ "id":1,
  "username":"dashen",
  "dispname":"达深",
  "lastname":"柳",
@@ -20,7 +20,7 @@
 
 } ,
 {
- "uid":2,
+ "id":2,
  "username":"shaun",
  "dispname":"晓友",
  "lastname":"李",
@@ -40,7 +40,7 @@
 
 } ,
 {
- "uid":3,
+ "id":3,
  "username":"jack",
  "dispname":"吉辰",
  "lastname":"王",

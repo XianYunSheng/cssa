@@ -13,9 +13,16 @@ function ys_setGuiLabelAndTitle(){
 			
 			reg.byId("article_mgt_btn").set("label", common.article_mgt);
 			reg.byId("calendar_mgt_btn").set("label", common.calendar_mgt);
+			reg.byId("user_mgt_btn").set("label", common.user_mgt);
+			reg.byId("master_mgt_btn").set("label", common.master_mgt);
+			
+			reg.byId("master_article_btn").set("label", common.article_mgt);
+			
 			reg.byId("welcome_btn").set("label", common.welcome);
 			reg.byId("pw_chg_btn").set("label", common.chg_pw);
 			reg.byId("logout_btn").set("label", common.logout);
+			
+			
 			
 			
 			dom.byId("mgt_login_usr_lb").innerHTML = common.login_username;

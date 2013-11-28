@@ -1,3 +1,7 @@
+
+
+所有view或者table的Id递交给前端统一为id. 这样便于前端代码复用. 
+
 1.用户 user
 User
 +	GET    /user/	               获得所有user的一个json array.  并且实现filtering和sorting    
@@ -19,7 +23,7 @@ User
 
 json obj：
 {
-uid: long,
+id: long,
 username:string,
 dispname:string, //显示名
 first name:string,
@@ -49,14 +53,14 @@ phpsessid:string   // 用在判断用户在线和不能同时异地登录，以�
 返回
 {
 success: true/false, 
-uid: long//该user的id
+id: long//该user的id
 }
 
 
 + POST  /logout/
 json obj:
 {
-uid: long  // user的id
+id: long  // user的id
 phpsessid:string   
 }
 
@@ -69,7 +73,7 @@ phpsessid:string
 json obj:
 
 {
-articleId: 1,  // article的id
+        id: 1,  // article的id
 		answer: [{id:3, title:"回复第一篇", creuser:2}],
 		title:"第一篇",
 		content:"This is the first aticle",
