@@ -7,9 +7,12 @@ function showCalMgt(){
 	ys_showMainPageForManagementBtnClick("calendar_mgt_borderContainer");
 }
 
+ 
+
 function doChgUserPasswd(){
 	
 }
+ 
 
 function ys_showMainPageForManagementBtnClick(show_id){
 	
@@ -59,4 +62,30 @@ function ys_showMainPageForManagementBtnClick(show_id){
         //var page_content = reg.byId("page_content_container");
         //page_content.resize();
     });
+}
+
+function ys_reg_onclick_event_for_sys(){
+	
+	console.log("ys_reg_onclick_event_for_sys");
+	
+	require(["dojo/on","dijit/registry"], function(on, reg){
+		
+		//user mgt
+		var userMgt_btn = reg.byId("user_mgt_btn");
+		on(userMgt_btn, "click", function(e){
+		    var dlg = reg.byId("mgt_userDlg");
+		    dlg.show();
+		    ys_userDlgStart(reg);
+		});
+		
+		
+		var userMgt_cl_btn = reg.byId("mgt_userDlg_cl");
+		on(userMgt_cl_btn, "click", function(e){
+		    var dlg = reg.byId("mgt_userDlg");
+		    dlg.hide();
+		    
+		});
+		
+		
+	});
 }

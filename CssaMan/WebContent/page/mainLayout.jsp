@@ -3,7 +3,7 @@
         <span data-dojo-type="dijit/Toolbar" id="page_main_toolbar" style="display: none;">
             <input type="button" data-dojo-type="dijit/form/Button" id="article_mgt_btn" tabIndex="-1" intermediateChanges="false" label="Article Management"  iconClass="dijitNoIcon" onclick="showArtMgt();"></input>
             <input type="button" data-dojo-type="dijit/form/Button" id="calendar_mgt_btn" tabIndex="-1" intermediateChanges="false" label="Calendar Management" iconClass="dijitNoIcon" onclick="showCalMgt();"></input>
-            <input type="button" data-dojo-type="dijit/form/Button" id="user_mgt_btn" tabIndex="-1" intermediateChanges="false" label="User Management" iconClass="dijitNoIcon" onclick="showUserMgt();"></input>
+            <input type="button" data-dojo-type="dijit/form/Button" id="user_mgt_btn" tabIndex="-1" intermediateChanges="false" label="User Management" iconClass="dijitNoIcon"></input>
 			
 			<span data-dojo-type="dijit/form/DropDownButton" id="master_mgt_btn" tabIndex="-1" intermediateChanges="false" label="Master Data" iconClass="dijitNoIcon" style="float: right;">
                 <span  data-dojo-type="dijit/Menu" contextMenuForWindow="false" leftClickToOpen="false" tabIndex="0">

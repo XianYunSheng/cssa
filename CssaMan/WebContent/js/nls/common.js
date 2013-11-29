@@ -47,7 +47,12 @@ define({
         all_day:"全天",
         calendar:"日历",
         registration:"注册",
-        validation_code:"验证码"
+        validation_code:"验证码",
+        dispname:"显示名",
+        name:"姓名",
+        firstname:"名",
+        lastname:"姓",
+        roler:"角色"
 
 	 },
 

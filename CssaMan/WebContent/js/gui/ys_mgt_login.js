@@ -162,6 +162,9 @@ function ys_doLogin() {
 																		ys_calendar_in_calendar_management_init();
 																		ys_showMainPageForManagementBtnClick("calendar_mgt_borderContainer");
 
+																		//注册其他系统toolbar点击事件
+																		ys_reg_onclick_event_for_sys();
+																		
 																	} else {
 																		console
 																				.log("error: loginDlg could not be found!");
