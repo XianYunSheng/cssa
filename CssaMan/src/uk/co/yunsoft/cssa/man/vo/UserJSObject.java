@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class UserJSObject {
 
-	public String uid;
+	public String id;
 	
 	public String username;
 	

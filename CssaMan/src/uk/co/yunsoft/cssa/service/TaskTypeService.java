@@ -43,7 +43,7 @@ public class TaskTypeService {
 			for(TaskTypeInfo tskType:taskTypeList){
 				TaskTypeJSObject tskTypeJson = new TaskTypeJSObject();
 				tskTypeJson.typeName = tskType.getTypeName();
-				tskTypeJson.typeId = tskType.getTypeId();
+				tskTypeJson.id = tskType.getTypeId();
 				resultList.add(tskTypeJson);
 			}
 		}

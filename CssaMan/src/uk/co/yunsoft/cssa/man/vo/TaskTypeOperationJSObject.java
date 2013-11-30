@@ -7,7 +7,7 @@ public class TaskTypeOperationJSObject {
 
 	public boolean success;
 	
-	public int typeId;
+	public int id;
 	
 	public TaskTypeOperationJSObject(){
 		

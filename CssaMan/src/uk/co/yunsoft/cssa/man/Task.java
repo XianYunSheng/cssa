@@ -41,7 +41,7 @@ public class Task {
 		TaskOperationJSObject tojson = new TaskOperationJSObject();
 		if(taskId!=null){
 			tojson.success = true;
-			tojson.taskId = taskId;
+			tojson.id = taskId;
 		}else{
 			tojson.success = false;
 		}

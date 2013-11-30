@@ -49,7 +49,7 @@ public class User {
 		UserJSObject userJson = new UserJSObject();
 
 		if (user != null) {
-			userJson.uid = user.getUid();
+			userJson.id = user.getUid();
 			userJson.email = user.getEmail();
 			userJson.username = user.getUsername();
 			return userJson;
@@ -77,7 +77,7 @@ public class User {
 		LoginJSObject login = new LoginJSObject();
 		
 		if(uid != null){
-			login.uid = uid;
+			login.id = uid;
 			login.success = true;
 		}
 		

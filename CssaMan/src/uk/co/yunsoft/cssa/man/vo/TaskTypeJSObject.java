@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class TaskTypeJSObject {
 
-	public int typeId;
+	public int id;
 	
 	public String typeName;
 	

@@ -28,7 +28,7 @@ public class Login {
 			loginResult.success = false;
 		} else {
 			loginResult.success = true;
-			loginResult.uid = uid;
+			loginResult.id = uid;
 		}
 		return loginResult;
 

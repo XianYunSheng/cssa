@@ -9,7 +9,7 @@ public class TaskJSObject {
 
 	}
 
-	public String taskId;
+	public String id;
 
 	public String taskTitle;
 

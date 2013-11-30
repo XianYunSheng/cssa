@@ -9,7 +9,7 @@ public class LoginJSObject {
 	public boolean success = false;
 	
 	
-	public String uid;
+	public String id;
 	
 	public LoginJSObject(){
 		

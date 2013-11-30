@@ -106,7 +106,7 @@ public class UserService {
 				for (UserInfo u : users) {
 					UserJSObject userJson = new UserJSObject();
 					userJson.email = u.getEmail();
-					userJson.uid = u.getUid();
+					userJson.id = u.getUid();
 					userJson.username = u.getUsername();
 
 					userList.add(userJson);

@@ -7,7 +7,7 @@ public class TaskOperationJSObject {
 
 	public boolean success;
 	
-	public String taskId;
+	public String id;
 	
 	public  TaskOperationJSObject() {
 		// TODO Auto-generated constructor stub

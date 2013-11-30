@@ -44,7 +44,7 @@ public class TaskService {
 			for (TaskInfo task : tasks) {
 				TaskJSObject taskJson = new TaskJSObject();
 
-				taskJson.taskId = task.getTaskId();
+				taskJson.id = task.getTaskId();
 
 				taskJson.taskTitle = task.getTitle();
 
