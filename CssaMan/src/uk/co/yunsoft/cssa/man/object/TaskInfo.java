@@ -4,17 +4,17 @@ package uk.co.yunsoft.cssa.man.object;
 
 public class TaskInfo {
 
-	private String taskId;
+	public String taskId;
 	
-	private String title;
+	public String title;
 	
-	private String content;
+	public String content;
 	
-	private String taskTypeId;
+	public String taskTypeId;
 	
-	private long pubDate;
+	public long pubDate;
 	
-	private long dueDate;
+	public long dueDate;
 
 	public String getTaskId() {
 		return taskId;

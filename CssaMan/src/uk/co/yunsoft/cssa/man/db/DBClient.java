@@ -28,9 +28,9 @@ public class DBClient {
 		try {
 			dbConnection = ds.getConnection();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
-			
+
 			throw new CSSASystemException("DB Connection");
 		}
 
@@ -120,7 +120,8 @@ public class DBClient {
 
 	}
 
-	public int insertObject(Class object, String tableName) {
+	public int insertObject(Object objectInstance, String tableName) {
+		Class object = objectInstance.getClass();
 		Field[] fields = object.getFields();
 
 		StringBuilder sqlBuilder = new StringBuilder();
@@ -129,72 +130,83 @@ public class DBClient {
 
 		for (Field f : fields) {
 			try {
-				if(f.get(object)!=null)
+				// if(f.get(object)!=null)
 				sqlBuilder.append(f.getName()).append(",");
 			} catch (IllegalArgumentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
+			// } catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
 
 		}
 		sqlBuilder.deleteCharAt(sqlBuilder.lastIndexOf(","));
 		sqlBuilder.append(") values (");
 
 		for (int i = 0; i < fields.length; i++) {
-			sqlBuilder.append("?,");
+			Field f = fields[i];
+			// if(f.get(object)!=null){
+			String type = f.getType().getName();
+
+			if (type.equals("java.lang.String")) {
+
+				try {
+					Object value = f.get(objectInstance);
+					sqlBuilder.append("'" + value + "',");
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} else if (type.equals("int")) {
+				try {
+					sqlBuilder.append(f.getInt(objectInstance) + ",");
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else if (type.equals("long")) {
+				try {
+					sqlBuilder.append(f.getLong(objectInstance) + ",");
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			// sqlBuilder.append("?,");
 
 		}
 		sqlBuilder.deleteCharAt(sqlBuilder.lastIndexOf(",")).append(")");
-
+		System.out.println(sqlBuilder.toString());
 		try {
-			PreparedStatement ps = dbConnection.prepareStatement(sqlBuilder
-					.toString());
-			for (int i = 0; i < fields.length; i++) {
-				Field f = fields[i];
-				if(f.get(object)!=null){				
-					String type = f.getType().getName();
-				
-				if (type.equals("java.lang.String")) {
-					ps.setString(i, (String) f.get(object));
-				} else if (type.equals("int")) {
-					ps.setInt(i, f.getInt(object));
-				}else if(type.equals("long")){
-					ps.setLong(i, f.getLong(object));
-				}
-			}
-			
-		}
+			Statement ps = dbConnection.createStatement();
 
-			
-			int result = ps.executeUpdate();
-			
+			int result = ps.executeUpdate(sqlBuilder.toString());
+
 			return result;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
-			return -1;
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-			return -1;
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
+
 			return -1;
 		}
 
-	
 	}
-	
-	
-	public int updateObject(Class object, String condition,String tableName){
+
+	public int updateObject(Class object, String condition, String tableName) {
 		Field[] fields = object.getFields();
 
 		StringBuilder sqlBuilder = new StringBuilder();
@@ -206,7 +218,7 @@ public class DBClient {
 
 		}
 		sqlBuilder.deleteCharAt(sqlBuilder.lastIndexOf(","));
-		sqlBuilder.append(" "+condition);
+		sqlBuilder.append(" " + condition);
 
 		try {
 			PreparedStatement ps = dbConnection.prepareStatement(sqlBuilder
@@ -220,25 +232,25 @@ public class DBClient {
 					ps.setInt(i, f.getInt(object));
 				}
 			}
-			
+
 			int result = ps.executeUpdate();
-			
+
 			return result;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 			return -1;
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 			return -1;
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 			return -1;
 		}
 

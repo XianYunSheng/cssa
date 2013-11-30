@@ -26,23 +26,18 @@ public class User {
 
 	@GET
 	@Produces("application/json")
-	public List<UserInfo> getUsers() {
+	public List<UserJSObject> getUsers() {
 
-		// UserInfo u1 = new UserInfo("test1","xr");
-		// UserInfo u2 = new UserInfo("test","rr");
-		// List<UserInfo> users = new ArrayList<UserInfo>();
-		// users.add(u1);
-		// users.add(u2);
-		return null;
+		userService = new UserService();
+		
+		List<UserJSObject> users = userService.getUsers(0, 0, 0);
+		
+		
+		return users;
 
 	}
 
-	// @PUT
-	// @Produces("application/json")
-	// public UserInfo addUser(){
-	//
-	// }
-
+	
 	@Path("{user}")
 	@GET
 	@Produces("application/json")

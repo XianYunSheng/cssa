@@ -1,11 +1,14 @@
 package uk.co.yunsoft.cssa.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import uk.co.yunsoft.cssa.man.db.DBClient;
 import uk.co.yunsoft.cssa.man.exception.CSSASystemException;
 import uk.co.yunsoft.cssa.man.object.UserInfo;
+import uk.co.yunsoft.cssa.man.vo.UserJSObject;
 
 public class UserService {
 
@@ -52,7 +55,7 @@ public class UserService {
 		try {
 			dbClient = new DBClient();
 
-			int result = dbClient.insertObject(user.getClass(), "tsk_users");
+			int result = dbClient.insertObject(user, "tsk_users");
 
 			dbClient.close();
 
@@ -77,7 +80,44 @@ public class UserService {
 
 		} catch (CSSASystemException e) {
 			return null;
+		} finally {
+			try {
+				dbClient.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+
+	}
+
+	public List<UserJSObject> getUsers(int total, int limit, int pageNo) {
+
+		List<UserJSObject> userList = null;
+
+		try {
+			dbClient = new DBClient();
+
+			List<UserInfo> users = dbClient.queryForList(UserInfo.class,
+					"tsk_users");
+
+			if (users != null) {
+				userList = new ArrayList<UserJSObject>();
+				for (UserInfo u : users) {
+					UserJSObject userJson = new UserJSObject();
+					userJson.email = u.getEmail();
+					userJson.uid = u.getUid();
+					userJson.username = u.getUsername();
+
+					userList.add(userJson);
+				}
+			}
+
+		} catch (CSSASystemException e) {
+			return null;
+		}
+
+		return userList;
 
 	}
 }

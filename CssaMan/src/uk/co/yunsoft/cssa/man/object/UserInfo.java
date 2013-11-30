@@ -2,15 +2,16 @@ package uk.co.yunsoft.cssa.man.object;
 
 
 
+
 public class UserInfo {
 
-	private String username;
+	public String username;
 	
-	private String password;
+	public String password;
 	
-	private String uid;
+	public String uid;
 	
-	private String email;
+	public String email;
 
 	public String getUsername() {
 		return username;

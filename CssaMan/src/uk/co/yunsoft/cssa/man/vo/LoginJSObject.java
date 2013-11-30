@@ -8,11 +8,6 @@ public class LoginJSObject {
 
 	public boolean success = false;
 	
-	@XmlTransient
-	public String username;
-	
-	@XmlTransient
-	public String password;
 	
 	public String uid;
 	
