@@ -22,98 +22,43 @@ function ys_start_article_grid() {
 			ColumnResizer, SingleSort, Summary, CellWidget, Bar,
 			IndirectSelect, Row, move_Row, Ext_Row, RowHeader, Pagination,
 			PaginationBar, Filter, FilterBar, QuickFilter) {
-		var master_store, cacheStore, store;
+		var master_store, cacheStore, store, uri;
 
 		// console.log("ys_start_article_grid------------> start ");
 
 		var id = "article_mgt_grid";
 		var grid_div = reg.byId(id);
 
-		var demo_data = [ {
-			articleId : 1, // article的id
-			answer : [ {
-				id : 3,
-				title : "回复第一篇",
-				creuser : 2
-			} ],
-			title : "第一篇",
-			content : "This is the first aticle",
-			creuser : "dashen", // 创建者username
-			credate : 123123123, // 创建时间戳 unix毫秒
-			moduser : "",// 修改者 userid
-			moddate : "",// 修改时间戳
-			refer : [ {
-				userid : 2,
-				dispname : "晓友",
-				username : "dashen"
-			}, {
-				userid : 3,
-				dispname : "吉晨",
-				username : "jack"
-			} ], // 涉及人或者参与者等，json array
-			state : "A", // 状态，例如审核状态等
-		}, {
-			articleId : 2, // article的id
-			answer : [],
-			title : "第二篇",
-			content : "This is the answer of the first aticle",
-			creuser : "dashen", // 创建者username
-			credate : 123223123, // 创建时间戳 unix毫秒
-			moduser : "",// 修改者 userid
-			moddate : "",// 修改时间戳
-			refer : [ {
-				userid : 2,
-				dispname : "晓友",
-				username : "shaun"
-			}, {
-				userid : 3,
-				dispname : "吉晨",
-				username : "jack"
-			} ], // 涉及人或者参与者等，json array
-			state : "A", // 状态，例如审核状态等
-		}, {
-			articleId : 3, // article的id
-			answer : [],
-			title : "回复第一篇",
-			content : "This is the answer of the first aticle",
-			creuser : "xiaoyou", // 创建者userid
-			credate : 123123123, // 创建时间戳 unix毫秒
-			moduser : "",// 修改者 userid
-			moddate : "",// 修改时间戳
-			refer : [ {
-				userid : 2,
-				dispname : "晓友",
-				username : "shaun"
-			}, {
-				userid : 3,
-				dispname : "吉晨",
-				username : "jack"
-			} ], // 涉及人或者参与者等，json array
-			state : "A", // 状态，例如审核状态等
-		} ];
+		 
 
 		// store = new Memory({data:demo_data});
 
 		if (YS_TEST) {
-			store = new Memory({
-				idProperty : "articleId",
-				data : demo_data
-			});
+			
+			uri = "/" + SYS_PATH + "/test_res/article.json";
+			 
 		} else {
+			
+		    uri = "/" + SYS_PATH + "/api/article/";
+		}
+		
+		
 			master_store = new Observable(JsonRest({
-				target : "http://www.cssa.yunsoft.co.uk/taskman/article/id/",
+				target : uri,
 				headers: {                     // This is required to stop the
 		 			"X-Requested-With": "" // server from rejecting the 
 		 		},
-				idAttribute : "articleId"
+				idAttribute : "id"
 			}));
 
 			cacheStore = new Memory({
-				idProperty : "articleId",
+				idProperty : "id",
 				data : []
 			});
+			
+			
 			store = CacheL(master_store, cacheStore);
-		}
+		 
 
 		if (!grid_div) {
 
@@ -253,7 +198,7 @@ function ys_start_article_grid() {
 				var rowData = grid.row(rowId).rawData();
 				console.log("row data   ", rowData);
 				
-				ys_article_select_update_page(reg, rowData, domConstruct, win);
+				ys_grid_select_update_page(id, reg, rowData, domConstruct, win);
 
 			});
 
@@ -266,40 +211,30 @@ function ys_start_article_grid() {
 			grid_div.setStore(store);
 		}
 
-		ys_start_article_grid_toolbar();
+		ys_start_article_grid_toolbar(id, reg);
 
 	});
 
 }
-function ys_start_article_grid_toolbar() {
 
-	require(
-			[ "dojo/i18n!js/nls/common.js", "dojo/dom-style",
-					"dijit/registry", "dojo/request/xhr", "dojo/store/Memory",
-					"dojo/on", "dojo/when", "dojo/dom-construct",
-					"dojo/_base/window" ],
-			function(common, domStyle, reg, xhr, Memory, on, when,
-					domConstruct, win) {
-				var grid_id = "article_mgt_grid";
-				var article_toolbar = reg.byId(grid_id + "Toolbar");
-				var article_grid = reg.byId(grid_id);
-				var article_editor = reg.byId("article_mgt_editor");
-				var article_editor_title = reg.byId("article_mgt_editor_title");
 
-				var clean_btn = reg.byId(grid_id + "Toolbar_create_btn");
-				var insert_btn = reg.byId(grid_id + "Toolbar_insert_btn");
-				var change_btn = reg.byId(grid_id + "Toolbar_change_btn");
-				var delete_btn = reg.byId(grid_id + "Toolbar_delete_btn");
-				var refresh_btn = reg.byId(grid_id + "Toolbar_refresh_btn");
+function ys_start_article_grid_toolbar(gridId, reg) {
 
-				var article_title = article_editor_title.get("value");
-				var article_content = article_editor.get("value");
-
-				var article_obj = {
-					articleId : "",
+ 
+				
+				cleanArr = ["article_mgt_editor_title", "article_mgt_editor"];
+				
+				requestArr = ["article_mgt_editor_title", "article_mgt_editor"];
+				
+				validateArr = [];
+				
+				dateArr = [];
+			 
+				var interfaceObj = {
+					id : "",
 					answer : [],
-					title : article_title,
-					content : article_content,
+					title : reg.byId("article_mgt_editor_title").get(value),
+					content : reg.byId("article_mgt_editor").get("value"),
 					creuser : "", // 创建者username
 					credate : "", // 创建时间戳 unix毫秒
 					moduser : "",// 修改者 userid
@@ -309,256 +244,28 @@ function ys_start_article_grid_toolbar() {
 
 				};
 
-				// clean
-				if (clean_btn) {
-					on(clean_btn, "click", function(e) {
-						article_grid.select.row.clear();
-						ys_article_page_clean(article_editor,
-								article_editor_title);
-
-					});
-				}
-
-				if (insert_btn) {
-					on(
-							insert_btn,
-							"click",
-							function(e) {
-
-								console.log("article_editor = ", article_editor
-										.get("value"),
-										"  article_editor_title = ",
-										article_editor_title.get("value"));
-
-								if (ys_article_pre_check(article_content,
-										article_title)) {
-									when(
-											article_grid.store
-													.add(ys_article_grid_insert(
-															article_obj, reg)),
-											function(value) {
-												// do something when resolved
-												console.log("after add");
-												console.log("value ", value);
-												if (!value.success) {
-													alert(common.operation_error);
-												} else {
-													var new_id = value.articleId;
-
-													article_grid.model
-															.clearCache();
-													article_grid.model.query({
-														articleId : new_id
-													}, {
-														start : 0,
-														count : 1
-													});
-													article_grid.body.refresh();
-													article_grid.select.row
-															.clear();
-
-													ys_article_page_clean(
-															article_editor,
-															article_editor_title);
-
-												}
-											}, function(err) {
-												console.log("err ", err);
-												alert(common.operation_error);
-											}, function(update) {
-											});
-								}
-
-							});
-				} else {
-
-					console.log("insert btn could not be found, ", insert_btn);
-				}// end insert
-
-				if (change_btn) {
-					on(change_btn, "click", function(e) {
-						console.log("update op");
-						var selected = article_grid.select.row.getSelected();
-						if (selected.length != 1) {
-							alert("请您选择一个条目进行编辑");
-							return false;
-						} else {
-							if (ys_article_pre_check(article_content,
-									article_title)) {
-
-								var row = article_grid.row(selected[0]);
-								when(article_grid.store.put(
-										ys_article_grid_update(row, obj, reg),
-										{
-											articleId : selected[0]
-										}), function(value) {
-
-									console.log("value ", value);
-									if (!value.success) {
-										alert(common.operation_error);
-									}
-
-									article_grid.model.clearCache();
-									article_grid.body.refresh();
-								}, function(err) {
-									// do something when rejected
-									console.log("err ", err);
-									alert(common.operation_error);
-									article_grid.model.clearCache();
-									article_grid.body.refresh();
-									article_grid.select.row.clear();
-								}, function(update) {
-								});
-
-							}
-
-						}
-
-					});
-				}// end update
-
-				if (delete_btn) {
-					on(
-							delete_btn,
-							"click",
-							function(e) {
-								// handle the event
-								console.log("delete_btn click");
-
-								var selected = article_grid.select.row
-										.getSelected();
-
-								if (selected.length != 1) {
-									alert("请您选择一个条目进行编辑");
-									return false;
-								} else {
-									when(
-											article_grid.store
-													.remove(selected[0]),
-											function(value) {
-
-												console.log(
-														"delete_btn click ",
-														value);
-
-												if (!value) {
-													alert(common.operation_error);
-												} else {
-
-													ys_article_page_clean(
-															article_editor,
-															article_editor_title);
-
-												}
-
-												article_grid.model.clearCache();
-												article_grid.body.refresh();
-
-												article_grid.select.row.clear();
-											},
-											function(err) {
-												// do something when rejected
-												console.log("err ", err);
-												alert(common.operation_error);
-												article_grid.model.clearCache();
-												article_grid.body.refresh();
-											}, function(update) {
-											});
-								}
-
-							});
-				}// end delete
-
-				// refresh
-				if (refresh_btn) {
-					on(refresh_btn, "click", function(e) {
-
-						console.log("refresh_btn click");
-						article_grid.model.clearCache();
-
-						article_grid.body.refresh();
-						article_grid.select.row.clear();
-						console.log("refresh finish");
-					});
-				}
-
-				ys_set_user_list_in_article_refer(reg, xhr, common, Memory,
-						domConstruct, win);
-			});
+				ys_grid_toolbar_init(gridId, interfaceObj, cleanArr, requestArr, validateArr, dateArr);
+				
+				
+				
+				
+				require(
+						[ "dojo/i18n!js/nls/common.js", "dojo/dom-style",
+								"dijit/registry", "dojo/request/xhr", "dojo/store/Memory",
+								"dojo/on", "dojo/when", "dojo/dom-construct",
+								"dojo/_base/window" ],
+								
+						function(common, domStyle, reg, xhr, Memory, on, when,
+								domConstruct, win) {
+							ys_set_user_list_in_article_refer(reg, xhr, common, Memory, domConstruct, win);
+						});
+			
+				
+			 
 
 }
 
-function ys_article_grid_insert(obj, reg) {
 
-	obj.articleId = "";
-	obj.answer = "";
-	creuser = YS_MGT_CURRENT_USER.username; // 创建者username
-	credate = new Date().getTime(); // 创建时间戳 unix毫秒
-	moduser = ""; // 修改者 userid
-	moddate = "";// 修改时间戳
-	
-	
-	
-	var refers = reg.byId("article_refers_select").get("value");
-	var refers_disp = reg.byId("article_refers_select").get("displayedValue");
-	var ref = new Array();
-	for(var i in refers){
-		ref.push({"username":refers[i],"dispname":refers_disp[i]});
-	}
-	
-	refer = ref; // 涉及人或者参与者等，json
-															// array
-	state = "";
-
-	return obj;
-
-}
-
-function ys_article_grid_update(row, obj, reg) {
-
-	obj.articleId = row.articleId;
-	obj.answer = "";
-
-	moduser = YS_MGT_CURRENT_USER.username; // 修改者 userid
-	moddate = new Date().getTime();// 修改时间戳
-	
-	var refers = reg.byId("article_refers_select").get("value");
-	var refers_disp = reg.byId("article_refers_select").get("displayedValue");
-	var ref = new Array();
-	for(var i in refers){
-		ref.push({"username":refers[i],"dispname":refers_disp[i]});
-	}
-	
-	refer = ref; // 涉及人或者参与者等，json
-															// array
-	state = "";
-
-	return obj;
-
-}
-
-function ys_article_page_clean(content, title) {
-
-	content.set("value", "");
-	title.set("value", "");
-
-}
-
-function ys_article_pre_check(article_content, article_title) {
-
-	if (article_content == "") {
-		alert("内容不能为空");
-		return false;
-	}
-
-	if (article_title == "") {
-		alert("标题不能为空");
-		return false;
-	}
-
-	return true;
-
-}
 
 function ys_set_user_list_in_article_refer(reg, xhr, common, Memory,
 		domConstruct, win) {
@@ -567,14 +274,14 @@ function ys_set_user_list_in_article_refer(reg, xhr, common, Memory,
 	var uri = "";
 
 	if (YS_TEST) {
-		uri = "../test_res/users.json";
+		uri = "/" + SYS_PATH + "/test_res/users.json";
 	} else {
-		uri = "http://www.cssa.yunsoft.co.uk/taskman/user/id/";
+		uri = "/" + SYS_PATH + "/api/user/";
 	}
 
 	xhr(uri, {
 		handleAs : "json"
-	}).then(function(data) {
+	}).then(function(data) {ys_start_article_grid_toolbar
 		if (data) {
 			console.log("data from server ", data);
 			for ( var p in data) {
@@ -613,27 +320,4 @@ function ys_set_user_list_in_article_refer(reg, xhr, common, Memory,
 }
 
 
-function ys_article_select_update_page(reg, row, domConstruct, win){
-	//todo:
-	var article_editor = reg.byId("article_mgt_editor");
-	var article_editor_title = reg.byId("article_mgt_editor_title");
-	var refers_select = reg.byId("article_refers_select");
-	
-	
-	article_editor.set("value", row.content);
-	article_editor_title.set("value",row.title);
-	
-	//domConstruct.empty("article_refers_select");
 
-	var p_list = row.refer;
-	var refer_arr = new Array();
-	for ( var i in p_list) {
-		console.log(p_list[i]);
-		refer_arr.push(p_list[i].username);
-	}
-	
-	console.log("refer array = ", refer_arr);
-	
-	refers_select.set("value",refer_arr);
-	
-}

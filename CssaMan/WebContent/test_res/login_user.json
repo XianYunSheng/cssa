@@ -1,0 +1,21 @@
+{
+ "success":true,
+ "id":123,
+ "username":"ys",
+ "dispname":"云晟科技",
+ "lastname":"科技",
+ "firstname":"云晟",
+ "email":"info@yunsheng.com",
+ "tel":"86-29-88113322",
+ "add":"伯明翰大道4号",
+ "zip":"81311",
+ "im":[{"qq":"12312311"},{"skype":"nike"}],
+ "gender":"M",
+ "birthday":"1223123123",
+ "college":"Uni NK",
+ "major":"CS",
+ "position":"SS",
+ "article":"" 
+
+
+} 

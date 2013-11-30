@@ -1,0 +1,62 @@
+[
+{
+ "id":1,
+ "username":"dashen",
+ "dispname":"达深",
+ "lastname":"柳",
+ "firstname":"达深",
+ "email":"info@yunsheng.com",
+ "tel":"86-29-88113322",
+ "add":"伯明翰大道4号",
+ "zip":"81311",
+ "im":[{"qq":"12312311"},{"skype":"nike"}],
+ "gender":"M",
+ "birthday":"1223123123",
+ "college":"Uni NK",
+ "major":"CS",
+ "position":"SS",
+ "article":"" 
+
+
+} ,
+{
+ "id":2,
+ "username":"shaun",
+ "dispname":"晓友",
+ "lastname":"李",
+ "firstname":"晓友",
+ "email":"info@yunsheng.com",
+ "tel":"86-29-88113322",
+ "add":"伯明翰大道4号",
+ "zip":"81311",
+ "im":[{"qq":"12312311"},{"skype":"nike"}],
+ "gender":"M",
+ "birthday":"1223123123",
+ "college":"Uni NK",
+ "major":"CS",
+ "position":"SS",
+ "article":"" 
+
+
+} ,
+{
+ "id":3,
+ "username":"jack",
+ "dispname":"吉辰",
+ "lastname":"王",
+ "firstname":"吉辰",
+ "email":"info@yunsheng.com",
+ "tel":"86-29-88113322",
+ "add":"伯明翰大道4号",
+ "zip":"81311",
+ "im":[{"qq":"12312311"},{"skype":"nike"}],
+ "gender":"M",
+ "birthday":"1223123123",
+ "college":"Uni NK",
+ "major":"CS",
+ "position":"SS",
+ "article":"" 
+
+
+} 
+]

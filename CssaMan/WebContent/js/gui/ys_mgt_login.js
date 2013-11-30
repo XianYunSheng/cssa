@@ -34,9 +34,9 @@ function ys_doLogin() {
 	var url = "";
 	
 	if(YS_TEST){
-		url = "../test_res/login.json";
+		url = "/" + SYS_PATH +"/test_res/login.json";
 	}else{
-		url = "/api/login/";
+		url = "/" + SYS_PATH +"/api/login/";
 	}
 	
 	 
@@ -72,21 +72,21 @@ function ys_doLogin() {
 
 										if (user_data.success) {
 
-											console.log("user_data.uid = ",
-													user_data.uid);
+											console.log("user_data.id = ",
+													user_data.id);
 
 											var uri_user_info = "";
 											if(YS_TEST){
-												uri_user_info = "../test_res/login_user.json";
+												uri_user_info = "/" + SYS_PATH +"/test_res/login_user.json";
 											}else{
-												uri_user_info = "http://www.cssa.yunsoft.co.uk/taskman/user/id/" + user_data.uid;
+												uri_user_info = "/" + SYS_PATH +"/api/user/" + user_data.id;
 											}
 											
 										 
 											var user_def = {
 
 												"success" : true,
-												"uid" : "",
+												"id" : "",
 												"username" : "",
 												"dispname" : "",
 												"lastname" : "",
@@ -117,7 +117,7 @@ function ys_doLogin() {
 																		.log(info_data);
 																if (info_data) {
 
-																	user_def.uid = info_data.uid;
+																	user_def.id = info_data.id;
 																	user_def.username = info_data.username;
 																	user_def.dispname = info_data.dispname;
 																	user_def.lastname = info_data.lastname;
@@ -162,6 +162,9 @@ function ys_doLogin() {
 																		ys_calendar_in_calendar_management_init();
 																		ys_showMainPageForManagementBtnClick("calendar_mgt_borderContainer");
 
+																		//注册其他系统toolbar点击事件
+																		ys_reg_onclick_event_for_sys();
+																		
 																	} else {
 																		console
 																				.log("error: loginDlg could not be found!");
@@ -235,9 +238,9 @@ function ys_doPasswdDlg() {
 				var uri = "";
 				
 				if(YS_TEST){
-					uri = "../test_res/passwdreset.json";
+					uri = "/" + SYS_PATH +"/test_res/passwdreset.json";
 				}else{
-					uri = "http://www.cssa.yunsoft.co.uk/taskman/userrestpw/";
+					uri = "/" + SYS_PATH +"/api/userrestpw/";
 				}
 				
 				

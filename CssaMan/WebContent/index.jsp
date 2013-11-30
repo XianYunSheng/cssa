@@ -1,5 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+    
+<%
+
+    String lang = request.getParameter("lang");
+
+    if ("en".equals(lang)) {
+        lang = "en-us";
+    }else {
+        lang = "zh-cn";
+    }     //default language
+
+
+    String app_name = request.getSession().getServletContext().getInitParameter("app_name");
+
+    //get client ip
+    String ip = request.getHeader("x-forwarded-for");
+
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        ip = request.getHeader("Proxy-Client-IP");
+    }
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        ip = request.getHeader("WL-Proxy-Client-IP");
+    }
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        ip = request.getRemoteAddr();
+    }
+
+%>
  
 
 <html>
@@ -64,9 +93,13 @@
         parseOnLoad:true,
         async:true,
         cacheBust:true,
-        locale:'zh-cn'  //之后应该变更成可有参数动态
+        locale:'<%=lang%>'  //之后应该变更成可有参数动态
     };
  
+    
+    var SYS_LANG = '<%=lang%>';
+    var SYS_PATH = '<%=app_name%>';
+    
     //console.log("dojoConfig",dojoConfig);
 </script>
 
@@ -81,6 +114,7 @@
 <script type="text/javascript" src="js/gui/ys_layout.js?version=0.1"></script>
 <script type="text/javascript" src="js/gui/ys_calendar.js?version=0.1"></script>
 <script type="text/javascript" src="js/gui/ys_article.js?version=0.1"></script>
+<script type="text/javascript" src="js/gui/ys_user.js?version=0.1"></script>
 
 <script>
     require([

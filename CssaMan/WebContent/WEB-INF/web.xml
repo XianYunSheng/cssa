@@ -32,5 +32,15 @@
 		<servlet-name>REST Service</servlet-name>
 		<url-pattern>/api/*</url-pattern>
 	</servlet-mapping>
+	
+	
+	
+	    <!--variables-->
+    <context-param>
+        <param-name>app_name</param-name>
+        <param-value>CssaMan</param-value>
+    </context-param>
+    
+    
 
 </web-app>

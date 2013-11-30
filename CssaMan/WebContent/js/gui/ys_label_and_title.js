@@ -11,11 +11,20 @@ function ys_setGuiLabelAndTitle(){
 			reg.byId("mgt_loginDlg").set("title", common.login);
 			reg.byId("mgt_passwd_recallDlg").set("title", common.passwd_recall);
 			
+		
+			
 			reg.byId("article_mgt_btn").set("label", common.article_mgt);
 			reg.byId("calendar_mgt_btn").set("label", common.calendar_mgt);
+			reg.byId("user_mgt_btn").set("label", common.user_mgt);
+			reg.byId("master_mgt_btn").set("label", common.master_mgt);
+			
+			reg.byId("master_article_btn").set("label", common.article_mgt);
+			
 			reg.byId("welcome_btn").set("label", common.welcome);
 			reg.byId("pw_chg_btn").set("label", common.chg_pw);
 			reg.byId("logout_btn").set("label", common.logout);
+			
+			
 			
 			
 			dom.byId("mgt_login_usr_lb").innerHTML = common.login_username;
@@ -44,7 +53,14 @@ function ys_setGuiLabelAndTitle(){
             
             reg.byId("calendar_mgt_event_update_btn").set("label", common.btn_update);
             reg.byId("calendar_mgt_event_delete_btn").set("label", common.btn_delete);
-		
+            
+            
+        	reg.byId("mgt_userDlg").set("title", common.user_mgt);
+			reg.byId("mgt_userDlg_cl").set("label", common.btn_cancel);
+            dom.byId("mgt_user_username_lb").innerHTML = common.username;
+            dom.byId("mgt_user_dispname_lb").innerHTML = common.name;
+            dom.byId("mgt_user_email_lb").innerHTML = common.email;
+            dom.byId("mgt_user_roler_sel_lb").innerHTML = common.roler;
 		
 	 });
 	 

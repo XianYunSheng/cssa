@@ -36,6 +36,8 @@ define({
         welcome:"欢迎",
         article_mgt:"条目管理",
         calendar_mgt:"日历管理",
+        user_mgt:"用户管理",
+        master_mgt:"主数据",
         team_calendar:"团队日历",
         public_calendar:"公共日历",
         event_properties:"事件面板",
@@ -45,7 +47,12 @@ define({
         all_day:"全天",
         calendar:"日历",
         registration:"注册",
-        validation_code:"验证码"
+        validation_code:"验证码",
+        dispname:"显示名",
+        name:"姓名",
+        firstname:"名",
+        lastname:"姓",
+        roler:"角色"
 
 	 },
 
