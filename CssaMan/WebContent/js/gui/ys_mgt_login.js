@@ -53,7 +53,7 @@ function ys_doLogin() {
 
 				var post_data = json.toJson({
 					username : username,
-					passwd : pwd,
+					password : pwd,
 					phpsessid : YS_PHPSESSID
 				});
 				xhr(url, {
