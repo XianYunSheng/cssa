@@ -60,7 +60,7 @@ function ys_doLogin() {
 					handleAs : "json",
 					headers: { 
 						"Content-Type":"application/json",
-						"X-Requested-With": "" // server from rejecting the 
+						"X-Requested-With": "" 
 			 		},
 					method : "POST",
 					data : post_data

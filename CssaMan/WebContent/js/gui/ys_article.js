@@ -45,8 +45,9 @@ function ys_start_article_grid() {
 		
 			master_store = new Observable(JsonRest({
 				target : uri,
-				headers: {                     // This is required to stop the
-		 			"X-Requested-With": "" // server from rejecting the 
+				headers: { 
+					"Content-Type":"application/json",
+					"X-Requested-With": "" 
 		 		},
 				idAttribute : "id"
 			}));
@@ -281,12 +282,10 @@ function ys_set_user_list_in_article_refer(reg, xhr, common, Memory,
 
 	xhr(uri, {
 		handleAs : "json",
-		method:"GET",
 		headers: { 
 			"Content-Type":"application/json",
 			"X-Requested-With": "" 
  		}
-			
 	}).then(function(data) {ys_start_article_grid_toolbar
 		if (data) {
 			console.log("data from server ", data);
