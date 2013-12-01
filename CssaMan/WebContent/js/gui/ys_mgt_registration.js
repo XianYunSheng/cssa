@@ -29,14 +29,15 @@ function ys_doShowRegistration(){
 	    				if(YS_TEST){
 	    					validate_uri = "/" + SYS_PATH +"/test_res/passwdreset.json";
 	    				}else{
-	    					validate_uri = "/" + SYS_PATH +"/api/usernamevalidate/";
+	    					validate_uri = "/" + SYS_PATH +"/api/usernamevalidation/";
 	    				}
 	    				
 	    				
 	    				var post_data = json.toJson({username:value});
 	    				xhr(validate_uri,{handleAs: "json", 
-	    					headers: {                     // This is required to stop the
-	    			 			"X-Requested-With": "" // server from rejecting the 
+	    					headers: { 
+	    						"Content-Type":"application/json",
+	    						"X-Requested-With": "" 
 	    			 		},
 	    					method:"POST", data:post_data}).then(function(data){
 
@@ -129,8 +130,9 @@ function ys_doRegDlg(){
 				console.log("PUT 数据 ： ", put_data);
 				
 				xhr(uri,{handleAs: "json", 
-					headers: {                     // This is required to stop the
-			 			"X-Requested-With": "" // server from rejecting the 
+					headers: { 
+						"Content-Type":"application/json",
+						"X-Requested-With": "" 
 			 		},
 					method:"PUT", 
 					data:put_data}).then(function(data){

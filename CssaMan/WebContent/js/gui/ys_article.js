@@ -280,7 +280,13 @@ function ys_set_user_list_in_article_refer(reg, xhr, common, Memory,
 	}
 
 	xhr(uri, {
-		handleAs : "json"
+		handleAs : "json",
+		method:"GET",
+		headers: { 
+			"Content-Type":"application/json",
+			"X-Requested-With": "" 
+ 		}
+			
 	}).then(function(data) {ys_start_article_grid_toolbar
 		if (data) {
 			console.log("data from server ", data);

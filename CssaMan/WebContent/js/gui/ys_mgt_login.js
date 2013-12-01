@@ -58,8 +58,9 @@ function ys_doLogin() {
 				});
 				xhr(url, {
 					handleAs : "json",
-					headers: {                     // This is required to stop the
-			 			"X-Requested-With": "" // server from rejecting the 
+					headers: { 
+						"Content-Type":"application/json",
+						"X-Requested-With": "" // server from rejecting the 
 			 		},
 					method : "POST",
 					data : post_data
@@ -107,8 +108,9 @@ function ys_doLogin() {
 
 											xhr(uri_user_info, {
 												handleAs : "json",
-												headers: {                     // This is required to stop the
-										 			"X-Requested-With": "" // server from rejecting the 
+												headers: { 
+													"Content-Type":"application/json",
+													"X-Requested-With": "" 
 										 		}
 											})
 													.then(
@@ -250,8 +252,9 @@ function ys_doPasswdDlg() {
 
 				xhr(uri, {
 					handleAs : "json",
-					headers: {                     // This is required to stop the
-			 			"X-Requested-With": "" // server from rejecting the 
+					headers: { 
+						"Content-Type":"application/json",
+						"X-Requested-With": "" 
 			 		},
 					method : "POST",
 					data : post_data
