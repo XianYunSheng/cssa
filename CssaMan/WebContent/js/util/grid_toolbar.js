@@ -197,8 +197,22 @@ function ys_grid_insert(gridId, obj, reg) {
 		obj.refer = ref; // 涉及人或者参与者等，json array
 		obj.state = "";
 		
-	}
-
+	}else if("mgt_userDlgGrid" == gridId){
+		
+		obj.username = reg.byId("mgt_user_username");
+		obj.name = reg.byId("mgt_user_dispname");
+		obj.email = reg.byId("mgt_user_email");
+		
+		//todo: 适配器他扩充属性
+		
+	}else if("master_article_typeDlgGrid" == gridId){
+	
+		obj.code = reg.byId("master_article_type_code");
+		obj.label = reg.byId("master_article_type_label");
+	 
+	 
+	
+	} 
  
 
 	return obj;
@@ -228,7 +242,22 @@ function ys_grid_update(gridId, row, obj, reg) {
 		obj.state = "";
 
 		
-	}
+	}else if("mgt_userDlgGrid" == gridId){
+		
+		obj.username = reg.byId("mgt_user_username");
+		obj.name = reg.byId("mgt_user_dispname");
+		obj.email = reg.byId("mgt_user_email");
+		
+		//todo: 适配器他扩充属性
+		
+	}else if("master_article_typeDlgGrid" == gridId){
+	
+		obj.code = reg.byId("master_article_type_code");
+		obj.label = reg.byId("master_article_type_label");
+	 
+	 
+	
+	}  
 
  
 	
@@ -294,7 +323,21 @@ function ys_grid_select_update_page(gridId, reg, row, domConstruct, win){
 		refers_select.set("value",refer_arr);
 		
 	 
-	}
+	}else if("mgt_userDlgGrid" == gridId){
+		
+		username = reg.byId("mgt_user_username").set("value", row.username);
+		name = reg.byId("mgt_user_dispname").set("value", row.name);
+		email = reg.byId("mgt_user_email").set("value", row.email);
+		
+		//todo: 适配器他扩充属性
+		
+	}else if("master_article_typeDlgGrid" == gridId){
+	
+		 reg.byId("master_article_type_code").set("value", row.code);
+		 reg.byId("master_article_type_label").set("value", row.label);
+	 
+	
+	}  
 	 
 	
 	

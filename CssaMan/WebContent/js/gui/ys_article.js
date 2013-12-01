@@ -1,4 +1,120 @@
-function ys_start_article_grid() {
+function ys_start_article_grid(reg) {
+	
+	var id, layout, uri, colid, descending;
+	
+	 id = "article_mgt_grid";
+	
+	 layout = [ {
+		id : 'title',
+		field : 'title',
+		name : '题目',
+		width : '15%'
+	}, {
+		id : 'state',
+		field : 'state',
+		name : '状态',
+		width : '5%'
+	}, {
+		id : 'answer',
+		field : 'answer',
+		name : '回复数',
+		width : '5%',
+		formatter : function(rawData) {
+			return rawData.answer.length;
+		}
+	}, {
+		id : 'refer',
+		field : 'refer',
+		name : '参与',
+		width : '15%',
+		formatter : function(rawData) {
+			var erg = "";
+			var refers = rawData.refer;
+			if (refers && refers.length > 0) {
+				for ( var i in refers) {
+					var item = refers[i];
+					erg += item.dispname + " , ";
+				}
+
+				erg = erg.substring(0, erg.length - 2);
+			}
+			return erg;
+
+		}
+	}, {
+		id : 'creuser',
+		field : 'creuser',
+		name : '创建者',
+		width : '15%',
+		decorator : function(cellData) {
+			if (cellData) {
+
+				return cellData;
+			}
+
+			return cellData;
+
+		}
+	}, {
+		id : 'credate',
+		field : 'credate',
+		name : '创建时间',
+		width : '15%',
+		decorator : function(cellData) {
+			if (cellData) {
+				return getDateFromUTC(cellData);
+			}
+			return "";
+		}
+	}, {
+		id : 'moduser',
+		field : 'moduser',
+		name : '更改者',
+		width : '15%',
+		decorator : function(cellData) {
+			if (cellData) {
+
+				return cellData;
+			}
+
+			return cellData;
+
+		}
+	}, {
+		id : 'moddate',
+		field : 'moddate',
+		name : '修改时间',
+		width : '15%',
+		decorator : function(cellData) {
+			if (cellData) {
+				return getDateFromUTC(cellData);
+			}
+			return "";
+		}
+	},
+
+	];
+
+	
+	if (YS_TEST) {
+		
+		uri = "/" + SYS_PATH + "/test_res/article.json";
+		 
+	} else {
+		
+	    uri = "/" + SYS_PATH + "/api/article/";
+	}
+	
+	colid = "credate";
+	
+	descending = true;
+	
+	
+	ys_grid_component_with_toolbar_start(id, layout, uri, colid, descending);
+	
+	ys_start_article_grid_toolbar(id, reg);
+	
+	/*
 
 	require([ "dojo/dom-construct",
 				"dojo/_base/window",
@@ -215,7 +331,7 @@ function ys_start_article_grid() {
 		ys_start_article_grid_toolbar(id, reg);
 
 	});
-
+*/
 }
 
 
@@ -258,6 +374,7 @@ function ys_start_article_grid_toolbar(gridId, reg) {
 								
 						function(common, domStyle, reg, xhr, Memory, on, when,
 								domConstruct, win) {
+							//用户条目参与者多选的联动
 							ys_set_user_list_in_article_refer(reg, xhr, common, Memory, domConstruct, win);
 						});
 			

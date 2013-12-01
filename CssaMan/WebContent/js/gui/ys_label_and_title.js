@@ -6,11 +6,13 @@ function ys_setGuiLabelAndTitle(){
 			reg.byId("mgt_login_reset").set("label", common.btn_reset);
 			reg.byId("mgt_passwd_recallDlg_ok").set("label", common.btn_ok);
 			reg.byId("mgt_passwd_recallDlg_cl").set("label", common.btn_cancel);
+			reg.byId("master_article_typeDlg_cl").set("label", common.btn_cancel);
 			
 			
 			reg.byId("mgt_loginDlg").set("title", common.login);
 			reg.byId("mgt_passwd_recallDlg").set("title", common.passwd_recall);
 			reg.byId("mgt_regDlg").set("title", common.reg_dlg_title);
+			reg.byId("master_article_typeDlg").set("title", common.article_type);
 			
 		
 			
@@ -20,6 +22,7 @@ function ys_setGuiLabelAndTitle(){
 			reg.byId("master_mgt_btn").set("label", common.master_mgt);
 			
 			reg.byId("master_article_btn").set("label", common.article_mgt);
+			reg.byId("master_article_type_btn").set("label", common.article_type);
 			
 			reg.byId("welcome_btn").set("label", common.welcome);
 			reg.byId("pw_chg_btn").set("label", common.chg_pw);
@@ -65,13 +68,40 @@ function ys_setGuiLabelAndTitle(){
             reg.byId("calendar_mgt_event_update_btn").set("label", common.btn_update);
             reg.byId("calendar_mgt_event_delete_btn").set("label", common.btn_delete);
             
+            reg.byId("article_mgt_gridToolbar_clean_btn").set("label", common.btn_clean);
+            reg.byId("article_mgt_gridToolbar_insert_btn").set("label", common.btn_new);
+            reg.byId("article_mgt_gridToolbar_change_btn").set("label", common.btn_update);
+            reg.byId("article_mgt_gridToolbar_delete_btn").set("label", common.btn_delete);
+            reg.byId("article_mgt_gridToolbar_refresh_btn").set("label", common.btn_refresh);
+            
+            
+            reg.byId("mgt_userDlgGridToolbar_clean_btn").set("label", common.btn_clean);
+            reg.byId("mgt_userDlgGridToolbar_insert_btn").set("label", common.btn_new);
+            reg.byId("mgt_userDlgGridToolbar_change_btn").set("label", common.btn_update);
+            reg.byId("mgt_userDlgGridToolbar_delete_btn").set("label", common.btn_delete);
+            reg.byId("mgt_userDlgGridToolbar_refresh_btn").set("label", common.btn_refresh);
+            
+            
+            reg.byId("master_article_typeDlgGridToolbar_clean_btn").set("label", common.btn_clean);
+            reg.byId("master_article_typeDlgGridToolbar_insert_btn").set("label", common.btn_new);
+            reg.byId("master_article_typeDlgGridToolbar_change_btn").set("label", common.btn_update);
+            reg.byId("master_article_typeDlgGridToolbar_delete_btn").set("label", common.btn_delete);
+            reg.byId("master_article_typeDlgGridToolbar_refresh_btn").set("label", common.btn_refresh);
+            
             
         	reg.byId("mgt_userDlg").set("title", common.user_mgt);
 			reg.byId("mgt_userDlg_cl").set("label", common.btn_cancel);
-            dom.byId("mgt_user_username_lb").innerHTML = common.username;
-            dom.byId("mgt_user_dispname_lb").innerHTML = common.name;
-            dom.byId("mgt_user_email_lb").innerHTML = common.email;
+            dom.byId("mgt_user_username_lb").innerHTML = "<span class='text_red'>*</span>"+ common.login_username;
+            dom.byId("mgt_user_dispname_lb").innerHTML = "<span class='text_red'>*</span>"+ common.name;
+            dom.byId("mgt_user_email_lb").innerHTML = 	"<span class='text_red'>*</span>"+ common.email;
             dom.byId("mgt_user_roler_sel_lb").innerHTML = common.roler;
+
+            dom.byId("article_refers_select_lb").innerHTML = common.refers;
+            dom.byId("article_title_lb").innerHTML = common.title;
+            dom.byId("article_time_lb").innerHTML = common.time;
+            
+            dom.byId("master_article_type_code_lb").innerHTML = "<span class='text_red'>*</span>"+ common.code;
+            dom.byId("master_article_type_label_lb").innerHTML = "<span class='text_red'>*</span>"+ common.label;
 		
 	 });
 	 

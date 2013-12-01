@@ -1,0 +1,8 @@
+[
+{id:1, code:"A", lable:"全体活动"},
+{id:2, code:"B", lable:"部门活动"},
+{id:3, code:"C", lable:"假日活动"},
+{id:4, code:"D", lable:"外联活动"},
+{id:5, code:"E", lable:"委员活动"}
+
+]

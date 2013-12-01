@@ -6,6 +6,7 @@ define({
         btn_submit:"提交",
         btn_delete:"删除",
 		btn_update:"更改",
+		btn_refresh:"刷新",
 		btn_new:"新建",
 		btn_clean:"清空",
 		btn_filter:"过滤",
@@ -56,7 +57,13 @@ define({
         username_format:"英文，数字或者下划线",
         pwd_format:"密码4到10位，且至少包含一个数字",
         pwd_repeat:"重复密码",
-        reg_dlg_title:"注册窗口"
+        reg_dlg_title:"注册窗口",
+        refers:"参与者",
+        title:"标题",
+        time:"时间",
+        article_type:"条目类型",
+        code:"编号",
+        label:"名称"
 
 	 },
 
