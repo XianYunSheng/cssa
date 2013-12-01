@@ -10,6 +10,7 @@ function ys_setGuiLabelAndTitle(){
 			
 			reg.byId("mgt_loginDlg").set("title", common.login);
 			reg.byId("mgt_passwd_recallDlg").set("title", common.passwd_recall);
+			reg.byId("mgt_regDlg").set("title", common.reg_dlg_title);
 			
 		
 			
@@ -24,6 +25,9 @@ function ys_setGuiLabelAndTitle(){
 			reg.byId("pw_chg_btn").set("label", common.chg_pw);
 			reg.byId("logout_btn").set("label", common.logout);
 			
+			reg.byId("mgt_regDlg_ok").set("label", common.btn_ok);
+			reg.byId("mgt_regDlg_cl").set("label", common.btn_cancel);
+			
 			
 			
 			
@@ -34,6 +38,13 @@ function ys_setGuiLabelAndTitle(){
 	        dom.byId("mgt_registration_lb").innerHTML = common.registration;
 	        dom.byId("mgt_password_forgot_text_lb").innerHTML = common.pw_forgot_tips; 
             dom.byId("mgt_password_usr_lb").innerHTML = common.login_username;  
+            dom.byId("mgt_reg_username_format").innerHTML = common.username_format;  
+            dom.byId("mgt_reg_pwd_format").innerHTML = common.pwd_format; 
+            
+            dom.byId("mgt_reg_varpw_lb").innerHTML = "<span class='text_red'>*</span>"+ common.pwd_repeat; 
+            dom.byId("mgt_reg_passwd_lb").innerHTML = "<span class='text_red'>*</span>"+ common.login_pwd; 
+            dom.byId("mgt_reg_email_lb").innerHTML = "<span class='text_red'>*</span>"+ common.email; 
+            dom.byId("mgt_reg_username_lb").innerHTML = "<span class='text_red'>*</span>"+ common.login_username;  
 //            dom.byId("mgt_password_email_lb").innerHTML = common.email;
 //            dom.byId("mgt_password_reset_text").innerHTML = common.chg_pw_tips + "&nbsp;(" + common.password_format + ")";
 //            dom.byId("mgt_old_password_lb").innerHTML = common.old_pw;

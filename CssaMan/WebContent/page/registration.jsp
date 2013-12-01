@@ -9,19 +9,19 @@
 	 
     <table  style="font-size: 12px;">
         <tr>
-            <td align="right" width="30%"><label for="mgt_reg_username" id="mgt_reg_username_lb" style="padding-right: 20px; font-size: 12px;"><span class='text_red'>*</span>&nbsp;用户名</label></td>
+            <td align="right" width="30%"><label for="mgt_reg_username" id="mgt_reg_username_lb" style="padding-right: 20px; font-size: 12px;"></label></td>
             <td align="left" width="30%"><input data-dojo-type="dijit/form/ValidationTextBox" trim="true" type="text" name="mgt_reg_username" id="mgt_reg_username"></td>
-       		<td>英文，数字或者下划线</td>
+       		<td id="mgt_reg_username_format"></td>
         </tr>
         <tr>
-            <td align="right"><label for="mgt_reg_email" id="mgt_reg_email_lb" style="padding-right: 20px; font-size: 12px;"> </label><span class='text_red'>*</span>&nbsp;电子邮件</td>
+            <td align="right"><label for="mgt_reg_email" id="mgt_reg_email_lb" style="padding-right: 20px; font-size: 12px;"> </label></td>
             <td align="left"><input data-dojo-type="dijit/form/ValidationTextBox"  data-dojo-props='validator:dojox.validate.isEmailAddress' required="true"
             					    trim="true" type="text" name="mgt_reg_email" id="mgt_reg_email"></td> 
         </tr>
         
     
         <tr>
-            <td align="right" width="30%" id="mgt_reg_passwd_lb" ><span class='text_red'>*</span>&nbsp;密码</td>
+            <td align="right" width="30%" id="mgt_reg_passwd_lb" ></td>
             <td align="left" width="30%">
             	<input type="password"
     				   name="mgt_reg_passwd"
@@ -31,10 +31,10 @@
     			       intermediateChanges=false
     				   invalidMessage="请输入一个密码"></input>
             </td>
-            <td>密码4到10位，且至少包含一个数字</td>
+            <td id="mgt_reg_pwd_format"></td>
         </tr>
         <tr>
-            <td align="right" width="30%" id="mgt_reg_varpw_lb"><span class='text_red'>*</span>&nbsp;重复密码</td>
+            <td align="right" width="30%" id="mgt_reg_varpw_lb"></td>
             <td align="left" width="30%">
             	<input type="password"
     				   name="mgt_reg_passwd2"

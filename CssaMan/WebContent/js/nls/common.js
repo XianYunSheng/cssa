@@ -52,7 +52,11 @@ define({
         name:"姓名",
         firstname:"名",
         lastname:"姓",
-        roler:"角色"
+        roler:"角色",
+        username_format:"英文，数字或者下划线",
+        pwd_format:"密码4到10位，且至少包含一个数字",
+        pwd_repeat:"重复密码",
+        reg_dlg_title:"注册窗口"
 
 	 },
 
