@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import uk.co.yunsoft.cssa.man.db.DBClient;
 import uk.co.yunsoft.cssa.man.exception.CSSASystemException;
+import uk.co.yunsoft.cssa.man.object.Page;
 import uk.co.yunsoft.cssa.man.object.UserInfo;
 import uk.co.yunsoft.cssa.man.vo.UserJSObject;
 
@@ -20,7 +21,7 @@ public class UserService {
 			dbClient = new DBClient();
 
 			user = (UserInfo) dbClient.queryForObject(UserInfo.class,
-					"tsk_users", " where username='" + username + "'"
+					"select * from tsk_users where username='" + username + "'"
 							+ " and password='" + password + "'");
 
 			dbClient.close();
@@ -36,7 +37,7 @@ public class UserService {
 			dbClient = new DBClient();
 
 			UserInfo user = (UserInfo) dbClient.queryForObject(UserInfo.class,
-					"tsk_users", " where username='" + username + "'");
+					"select * from tsk_users where username='" + username + "'");
 
 			dbClient.close();
 
@@ -74,7 +75,7 @@ public class UserService {
 			dbClient = new DBClient();
 
 			UserInfo user = (UserInfo) dbClient.queryForObject(UserInfo.class,
-					"tsk_users", " where uid='" + uid + "'");
+					"select * from tsk_users where uid='" + uid + "'");
 
 			return user;
 
@@ -91,15 +92,19 @@ public class UserService {
 
 	}
 
-	public List<UserJSObject> getUsers(int total, int limit, int pageNo) {
+	public List<UserJSObject> getUsers(Page page) {
 
 		List<UserJSObject> userList = null;
+		
+		if(page != null){
+			page.setTotal(dbClient.countObjects("tsk_users"));
+		}
 
 		try {
 			dbClient = new DBClient();
 
 			List<UserInfo> users = dbClient.queryForList(UserInfo.class,
-					"tsk_users");
+					"select * from tsk_users",page);
 
 			if (users != null) {
 				userList = new ArrayList<UserJSObject>();

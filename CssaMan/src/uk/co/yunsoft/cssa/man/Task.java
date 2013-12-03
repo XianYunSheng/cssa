@@ -2,15 +2,18 @@ package uk.co.yunsoft.cssa.man;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 
+import uk.co.yunsoft.cssa.man.object.Page;
 import uk.co.yunsoft.cssa.man.object.TaskInfo;
-import uk.co.yunsoft.cssa.man.vo.StatusObject;
 import uk.co.yunsoft.cssa.man.vo.TaskJSObject;
 import uk.co.yunsoft.cssa.man.vo.TaskOperationJSObject;
 import uk.co.yunsoft.cssa.service.TaskService;
@@ -52,8 +55,23 @@ public class Task {
 	
 	@GET
 	@Produces("application/json")
-	public List<TaskJSObject> getTasks(){
-		List<TaskJSObject> results = taskService.getTaskList();
+	public List<TaskJSObject> getTasks(@HeaderParam("Range") String range, @Context HttpServletResponse response){
+		
+		Page page = null;
+		
+		if(range != null){
+			page = new Page();
+			int start = Integer.parseInt(range.substring(range.indexOf("=")+1, range.indexOf("-")));
+			int end = Integer.parseInt(range.substring(range.indexOf("-")+1));
+			page.setLimit(end-start);
+			page.setCurrent(start+1);
+			page.setTotal(end);
+			
+		}
+		List<TaskJSObject> results = taskService.getTaskList(page);
+		
+		response.setHeader("Content-Range", range+"/"+page.getTotal());
+		
 		return results;
 	}
 	

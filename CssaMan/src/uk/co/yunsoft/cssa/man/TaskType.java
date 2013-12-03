@@ -1,12 +1,18 @@
 package uk.co.yunsoft.cssa.man;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 
+import uk.co.yunsoft.cssa.man.object.Page;
 import uk.co.yunsoft.cssa.man.object.TaskTypeInfo;
 import uk.co.yunsoft.cssa.man.vo.TaskTypeJSObject;
 import uk.co.yunsoft.cssa.man.vo.TaskTypeOperationJSObject;
@@ -51,5 +57,28 @@ public class TaskType {
 		}
 		
 		return taskType;
+	}
+	
+	
+	public List<TaskTypeJSObject> getTaskTypes(@HeaderParam("Range") String range,
+			@Context HttpServletResponse response){
+		Page page = null;
+
+		if (range != null) {
+			page = new Page();
+			int start = Integer.parseInt(range.substring(
+					range.indexOf("=") + 1, range.indexOf("-")));
+			int end = Integer.parseInt(range.substring(range.indexOf("-") + 1));
+			page.setLimit(end - start);
+			page.setCurrent(start + 1);
+			page.setTotal(end);
+
+		}
+		
+		List<TaskTypeJSObject> taskTypes = taskTypeService.getTaskTypes(page);
+		
+		response.setHeader("Content-Range", range+"/"+page.getTotal());
+		
+		return taskTypes;
 	}
 }

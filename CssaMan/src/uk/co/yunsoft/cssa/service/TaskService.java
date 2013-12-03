@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import uk.co.yunsoft.cssa.man.db.DBClient;
 import uk.co.yunsoft.cssa.man.exception.CSSABusinessException;
+import uk.co.yunsoft.cssa.man.object.Page;
 import uk.co.yunsoft.cssa.man.object.TaskInfo;
 import uk.co.yunsoft.cssa.man.vo.TaskJSObject;
 
@@ -32,12 +33,19 @@ public class TaskService {
 
 	}
 
-	public List<TaskJSObject> getTaskList() {
+	public List<TaskJSObject> getTaskList(Page pageInfo) {
 		dbClient = new DBClient();
+	
 		List<TaskJSObject> taskJsons = null;
+		
+		if(pageInfo!=null){
+			int count = dbClient.countObjects("tsk_taskinfo");
+			
+			pageInfo.setTotal(count);
+		}
 
 		List<TaskInfo> tasks = dbClient
-				.queryForList(TaskInfo.class, "tsk_taskinfo");
+				.queryForList(TaskInfo.class, "select * from tsk_taskinfo",pageInfo);
 
 		if (tasks != null) {
 			taskJsons = new ArrayList<TaskJSObject>();
@@ -66,7 +74,7 @@ public class TaskService {
 		dbClient = new DBClient();
 
 		TaskInfo task = (TaskInfo) dbClient.queryForObject(TaskInfo.class,
-				"tsk_taskinfo", " where taskId='" + taskId + "'");
+				"select * from tsk_taskinfo where taskId ='"+taskId+"'");
 
 		return task;
 

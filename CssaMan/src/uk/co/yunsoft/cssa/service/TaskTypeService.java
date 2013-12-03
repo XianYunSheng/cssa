@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.yunsoft.cssa.man.db.DBClient;
+import uk.co.yunsoft.cssa.man.object.Page;
 import uk.co.yunsoft.cssa.man.object.TaskTypeInfo;
 import uk.co.yunsoft.cssa.man.vo.TaskTypeJSObject;
 
@@ -30,13 +31,17 @@ public class TaskTypeService {
 	}
 	
 	
-	public List<TaskTypeJSObject> getTaskTypes(){
+	public List<TaskTypeJSObject> getTaskTypes(Page page){
 		
 		dbClient = new DBClient();
 		
+		if(page!=null){
+			page.setTotal(dbClient.countObjects("tsk_tasktype"));
+		}
+		
 		List<TaskTypeJSObject> resultList = null;
 		
-		List<TaskTypeInfo> taskTypeList = dbClient.queryForList(TaskTypeInfo.class, "tsk_tasktype");
+		List<TaskTypeInfo> taskTypeList = dbClient.queryForList(TaskTypeInfo.class, "select * from tsk_tasktype", page);
 		
 		if(taskTypeList != null){
 			resultList = new ArrayList<TaskTypeJSObject>();
@@ -54,7 +59,7 @@ public class TaskTypeService {
 	public String getTaskTypeNameById(String taskTypeId){
 		dbClient = new DBClient();
 		
-		TaskTypeInfo info = (TaskTypeInfo)dbClient.queryForObject(TaskTypeInfo.class, "tsk_tasktype", " where typeId="+taskTypeId);
+		TaskTypeInfo info = (TaskTypeInfo)dbClient.queryForObject(TaskTypeInfo.class, "select * from tsk_tasktype where typeId="+taskTypeId);
 		
 		if(info!=null){
 			return info.getTypeName();

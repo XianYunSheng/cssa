@@ -12,6 +12,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import uk.co.yunsoft.cssa.man.exception.CSSASystemException;
+import uk.co.yunsoft.cssa.man.object.Page;
 
 public class DBClient {
 
@@ -36,16 +37,25 @@ public class DBClient {
 
 	}
 
-	public List queryForList(Class object, String tableName) {
+	public List queryForList(Class object, String sql, Page pageInfo) {
 		List result = new ArrayList();
 
-		Field[] fields = object.getFields();
+		Field[] fields = object.getDeclaredFields();
+		
+		//StringBuilder condition = new StringBuilder();
+		
+		if(pageInfo != null){
+			int start = (pageInfo.getCurrent()-1)*pageInfo.getLimit();
+			int end = start+pageInfo.getLimit();
+			sql += "limit "+start+","+end;
 
+		}
+			
 		try {
 
 			stat = dbConnection.createStatement();
 
-			rs = stat.executeQuery("select * from " + tableName);
+			rs = stat.executeQuery(sql);
 
 			while (rs.next()) {
 				try {
@@ -72,9 +82,8 @@ public class DBClient {
 		return result;
 	}
 
-	public Object queryForObject(Class object, String tableName,
-			String condition) {
-		Field[] fields = object.getFields();
+	public Object queryForObject(Class object, String sql) {
+		Field[] fields = object.getDeclaredFields();
 
 		Object newObject = null;
 
@@ -94,10 +103,9 @@ public class DBClient {
 
 			stat = dbConnection.createStatement();
 
-			rs = stat.executeQuery("select * from " + tableName + condition);
+			rs = stat.executeQuery(sql);
 
-			System.out.println("sql = " + "select * from " + tableName
-					+ condition);
+			//System.out.println("sql = " + sql.getSQL());
 
 			while (rs.next()) {
 				try {
@@ -163,26 +171,14 @@ public class DBClient {
 					e.printStackTrace();
 				}
 
-			} else if (type.equals("int")) {
+			} else {
 				try {
-					sqlBuilder.append(f.getInt(objectInstance) + ",");
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
+					sqlBuilder.append(f.get(objectInstance));
+				} catch (IllegalArgumentException | IllegalAccessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else if (type.equals("long")) {
-				try {
-					sqlBuilder.append(f.getLong(objectInstance) + ",");
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
 			}
 
 			// sqlBuilder.append("?,");
@@ -254,6 +250,29 @@ public class DBClient {
 			return -1;
 		}
 
+	}
+	
+	
+	public int countObjects(String tableName){
+		
+		int count = 0;
+		
+		try {
+			stat = dbConnection.createStatement();
+			
+			rs = stat.executeQuery("select count(*) num from "+tableName);
+			
+			while(rs.next()){
+				count = rs.getInt("num");
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			return -1;
+		}
+		
+		return count;
+		
 	}
 
 	public void close() throws SQLException {
