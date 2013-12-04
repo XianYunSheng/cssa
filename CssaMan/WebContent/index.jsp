@@ -115,8 +115,9 @@
 <script type="text/javascript" src="js/gui/ys_calendar.js?version=0.1"></script>
 <script type="text/javascript" src="js/gui/ys_article.js?version=0.1"></script>
 <script type="text/javascript" src="js/gui/ys_user.js?version=0.1"></script>
+<script type="text/javascript" src="js/gui/ys_task.js?version=0.1"></script>
 <script type="text/javascript" src="js/gui/ys_master_data.js?version=0.1"></script>
-<script type="text/javascript" src="js/gui/grid_toolbar.js?version=0.1"></script>
+<script type="text/javascript" src="js/util/grid_toolbar.js?version=0.1"></script>
 
 <script>
     require([
@@ -180,6 +181,7 @@
 <jsp:include page="page/passwdForgot.jsp"></jsp:include>
 <jsp:include page="page/registration.jsp"></jsp:include>
 <jsp:include page="page/masterDataArticleType.jsp"></jsp:include>
+<jsp:include page="page/taskMgt.jsp"></jsp:include>
 
 
 </body>

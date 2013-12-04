@@ -4,6 +4,7 @@
             <input type="button" data-dojo-type="dijit/form/Button" id="article_mgt_btn" tabIndex="-1" intermediateChanges="false" label="Article Management"  iconClass="dijitNoIcon" onclick="showArtMgt();"></input>
             <input type="button" data-dojo-type="dijit/form/Button" id="calendar_mgt_btn" tabIndex="-1" intermediateChanges="false" label="Calendar Management" iconClass="dijitNoIcon" onclick="showCalMgt();"></input>
             <input type="button" data-dojo-type="dijit/form/Button" id="user_mgt_btn" tabIndex="-1" intermediateChanges="false" label="User Management" iconClass="dijitNoIcon"></input>
+            <input type="button" data-dojo-type="dijit/form/Button" id="task_mgt_btn" tabIndex="-1" intermediateChanges="false" label="User Management" iconClass="dijitNoIcon"></input>
  
             <div data-dojo-type="dijit/form/DropDownButton" id="master_mgt_btn" showLabel="true">
                 <div data-dojo-type="dijit/Menu">
@@ -114,6 +115,32 @@
 	<input
 				type="button" data-dojo-type="dijit/form/Button"
 				id="master_article_typeDlgGridToolbar_refresh_btn" tabIndex="-1"
+				intermediateChanges="false" label="刷新"
+				iconClass="dijitEditorIcon dijitEditorIconDelete"> </input>
+</div>
+		
+<div data-dojo-type="dijit/Toolbar" id="mgt_taskDlgGridToolbar" style="display: none; height: 20px; font-size: 12px; padding-bottom: 5px; margin-bottom: 5px;">
+	<input type="button" data-dojo-type="dijit/form/Button" id="mgt_taskDlgGridToolbar_clean_btn" intermediateChanges="false"
+				label="清空" iconClass="dijitEditorIcon dijitEditorIconSep"
+				tabIndex="-1"> </input> 
+	<input type="button"
+				data-dojo-type="dijit/form/Button"
+				id="mgt_taskDlgGridToolbar_insert_btn" tabIndex="-1"
+				intermediateChanges="false" label="提交"
+				iconClass="dijitEditorIcon dijitEditorIconPaste"> </input> 
+	<input
+				type="button" data-dojo-type="dijit/form/Button"
+				id="mgt_taskDlgGridToolbar_change_btn" tabIndex="-1"
+				intermediateChanges="false" label="更改"
+				iconClass="dijitEditorIcon dijitEditorIconSave"> </input> 
+	<input
+				type="button" data-dojo-type="dijit/form/Button"
+				id="mgt_taskDlgGridToolbar_delete_btn" tabIndex="-1"
+				intermediateChanges="false" label="删除"
+				iconClass="dijitEditorIcon dijitEditorIconDelete"> </input> 
+	<input
+				type="button" data-dojo-type="dijit/form/Button"
+				id="mgt_taskDlgGridToolbar_refresh_btn" tabIndex="-1"
 				intermediateChanges="false" label="刷新"
 				iconClass="dijitEditorIcon dijitEditorIconDelete"> </input>
 </div>

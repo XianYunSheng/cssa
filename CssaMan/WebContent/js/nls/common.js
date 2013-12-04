@@ -63,7 +63,14 @@ define({
         time:"时间",
         article_type:"条目类型",
         code:"编号",
-        label:"名称"
+        label:"名称",
+        task:"任务",
+        task_mgt:"任务管理",
+        task_type:"任务种类",
+        task_title:"任务名称",
+        task_content:"任务内容",
+        task_dueDate:"执行时间",
+        task_pubDate:"公布时间"
 
 	 },
 

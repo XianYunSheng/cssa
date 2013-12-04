@@ -108,6 +108,25 @@ function ys_reg_onclick_event_for_sys(){
 		});
 		
 		
+		//task mgt
+		
+		var task_mgt_btn = reg.byId("task_mgt_btn");
+		on(task_mgt_btn, "click", function(e){
+			var dlg = reg.byId("mgt_taskDlg");
+			dlg.show();
+			ys_taskMgtStart(reg); 
+			
+		});
+		
+		
+		var mgt_task_cl_btn = reg.byId("mgt_taskDlg_cl");
+		on(mgt_task_cl_btn, "click", function(e){
+			var dlg = reg.byId("mgt_taskDlg");
+			dlg.hide();
+			
+		});
+		
+		
 	});
 }
 

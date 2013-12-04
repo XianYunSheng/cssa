@@ -103,6 +103,7 @@ function ys_start_article_grid(reg) {
 	} else {
 		
 	    uri = "/" + SYS_PATH + "/api/article/";
+	    //uri = "/" + SYS_PATH + "/api/task/";
 	}
 	
 	colid = "credate";

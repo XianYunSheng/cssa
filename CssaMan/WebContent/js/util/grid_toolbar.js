@@ -211,7 +211,13 @@ function ys_grid_insert(gridId, obj, reg) {
 		obj.label = reg.byId("master_article_type_label");
 	 
 	 
+	}else if("mgt_taskDlgGrid" == gridId){
 	
+		obj.dueDate = reg.byId("mgt_task_dueDate");
+		obj.pubDate = reg.byId("mgt_task_pubDate");
+		obj.taskTypeId = reg.byId("mgt_task_taskType_sel");
+	
+
 	} 
  
 
@@ -257,7 +263,14 @@ function ys_grid_update(gridId, row, obj, reg) {
 	 
 	 
 	
-	}  
+	}else if("mgt_taskDlgGrid" == gridId){
+	
+		obj.dueDate = reg.byId("mgt_task_dueDate");
+		obj.pubDate = reg.byId("mgt_task_pubDate");
+		obj.taskTypeId = reg.byId("mgt_task_taskType_sel");
+	
+
+	}   
 
  
 	
@@ -337,7 +350,16 @@ function ys_grid_select_update_page(gridId, reg, row, domConstruct, win){
 		 reg.byId("master_article_type_label").set("value", row.label);
 	 
 	
-	}  
+	}else if("mgt_taskDlgGrid" == gridId){
+		
+		reg.byId("mgt_task_taskTitle").set("value", row.taskTitle);
+		reg.byId("mgt_task_content").set("value", row.content);
+		reg.byId("mgt_task_dueDate").set("value", row.dueDate);
+		reg.byId("mgt_task_pubDate").set("value", row.pubDate);
+		reg.byId("mgt_task_taskType_sel").set("value", row.taskTypeId);
+  
+
+	}     
 	 
 	
 	

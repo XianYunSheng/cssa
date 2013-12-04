@@ -7,13 +7,15 @@ function ys_setGuiLabelAndTitle(){
 			reg.byId("mgt_passwd_recallDlg_ok").set("label", common.btn_ok);
 			reg.byId("mgt_passwd_recallDlg_cl").set("label", common.btn_cancel);
 			reg.byId("master_article_typeDlg_cl").set("label", common.btn_cancel);
+			reg.byId("mgt_taskDlg_cl").set("label", common.btn_cancel);
 			
 			
 			reg.byId("mgt_loginDlg").set("title", common.login);
 			reg.byId("mgt_passwd_recallDlg").set("title", common.passwd_recall);
 			reg.byId("mgt_regDlg").set("title", common.reg_dlg_title);
 			reg.byId("master_article_typeDlg").set("title", common.article_type);
-			
+			reg.byId("mgt_taskDlg").set("title", common.task_mgt);
+ 			
 		
 			
 			reg.byId("article_mgt_btn").set("label", common.article_mgt);
@@ -27,6 +29,7 @@ function ys_setGuiLabelAndTitle(){
 			reg.byId("welcome_btn").set("label", common.welcome);
 			reg.byId("pw_chg_btn").set("label", common.chg_pw);
 			reg.byId("logout_btn").set("label", common.logout);
+			reg.byId("task_mgt_btn").set("label", common.task_mgt);
 			
 			reg.byId("mgt_regDlg_ok").set("label", common.btn_ok);
 			reg.byId("mgt_regDlg_cl").set("label", common.btn_cancel);
@@ -88,6 +91,12 @@ function ys_setGuiLabelAndTitle(){
             reg.byId("master_article_typeDlgGridToolbar_delete_btn").set("label", common.btn_delete);
             reg.byId("master_article_typeDlgGridToolbar_refresh_btn").set("label", common.btn_refresh);
             
+            reg.byId("mgt_taskDlgGridToolbar_clean_btn").set("label", common.btn_clean);
+            reg.byId("mgt_taskDlgGridToolbar_insert_btn").set("label", common.btn_new);
+            reg.byId("mgt_taskDlgGridToolbar_change_btn").set("label", common.btn_update);
+            reg.byId("mgt_taskDlgGridToolbar_delete_btn").set("label", common.btn_delete);
+            reg.byId("mgt_taskDlgGridToolbar_refresh_btn").set("label", common.btn_refresh);
+            
             
         	reg.byId("mgt_userDlg").set("title", common.user_mgt);
 			reg.byId("mgt_userDlg_cl").set("label", common.btn_cancel);
@@ -102,6 +111,12 @@ function ys_setGuiLabelAndTitle(){
             
             dom.byId("master_article_type_code_lb").innerHTML = "<span class='text_red'>*</span>"+ common.code;
             dom.byId("master_article_type_label_lb").innerHTML = "<span class='text_red'>*</span>"+ common.label;
+            
+            dom.byId("mgt_task_taskTitle_lb").innerHTML = "<span class='text_red'>*</span>"+ common.task_title;
+            dom.byId("mgt_task_content_lb").innerHTML = "<span class='text_red'>*</span>"+ common.task_content;
+            dom.byId("mgt_task_dueDate_lb").innerHTML = "<span class='text_red'>*</span>"+ common.task_dueDate;
+            dom.byId("mgt_task_pubDate_lb").innerHTML = "<span class='text_red'>*</span>"+ common.task_pubDate;
+            dom.byId("mgt_task_taskType_sel_lb").innerHTML = "<span class='text_red'>*</span>"+ common.task_type;
 		
 	 });
 	 
