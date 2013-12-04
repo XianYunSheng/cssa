@@ -97,7 +97,7 @@ public class UserService {
 	public List<UserJSObject> getUsers(Page page) {
 
 		List<UserJSObject> userList = null;
-		
+		dbClient = new DBClient();
 		if(page != null){
 			page.setTotal(dbClient.countObjects("tsk_users"));
 		}
@@ -119,9 +119,14 @@ public class UserService {
 					userList.add(userJson);
 				}
 			}
+			
+			dbClient.close();
 
 		} catch (CSSASystemException e) {
 			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return userList;

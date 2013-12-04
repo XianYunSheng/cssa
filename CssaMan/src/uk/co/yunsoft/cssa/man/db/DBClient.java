@@ -47,14 +47,14 @@ public class DBClient {
 		if(pageInfo != null){
 			int start = (pageInfo.getCurrent()-1)*pageInfo.getLimit();
 			int end = start+pageInfo.getLimit();
-			sql += "limit "+start+","+end;
+			sql += " limit "+start+","+end;
 
 		}
 			
 		try {
 
 			stat = dbConnection.createStatement();
-
+			System.out.println("SQL"+sql);
 			rs = stat.executeQuery(sql);
 
 			while (rs.next()) {
@@ -174,7 +174,10 @@ public class DBClient {
 			} else {
 				try {
 					sqlBuilder.append(f.get(objectInstance));
-				} catch (IllegalArgumentException | IllegalAccessException e) {
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
