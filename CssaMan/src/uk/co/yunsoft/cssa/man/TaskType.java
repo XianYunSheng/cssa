@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 import uk.co.yunsoft.cssa.man.object.Page;
 import uk.co.yunsoft.cssa.man.object.TaskTypeInfo;
@@ -59,9 +60,9 @@ public class TaskType {
 		return taskType;
 	}
 	
-	
-	public List<TaskTypeJSObject> getTaskTypes(@HeaderParam("Range") String range,
-			@Context HttpServletResponse response){
+	@GET
+	@Produces("application/json")
+	public Response getTaskTypes(@HeaderParam("Range") String range){
 		Page page = null;
 
 		if (range != null) {
@@ -77,8 +78,8 @@ public class TaskType {
 		
 		List<TaskTypeJSObject> taskTypes = taskTypeService.getTaskTypes(page);
 		
-		response.setHeader("Content-Range", range+"/"+page.getTotal());
 		
-		return taskTypes;
+		
+		return Response.ok(taskTypes).header("Content-Range", range+"/"+page.getTotal()).build();
 	}
 }

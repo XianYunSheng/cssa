@@ -40,8 +40,10 @@ public class UserService {
 					"select * from tsk_users where username='" + username + "'");
 
 			dbClient.close();
+			
+			
 
-			if (user == null)
+			if (user.uid == null)
 				return true;
 			else
 				return false;

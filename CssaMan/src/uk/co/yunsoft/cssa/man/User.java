@@ -1,9 +1,7 @@
 package uk.co.yunsoft.cssa.man;
 
 import java.util.List;
-import java.util.UUID;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -13,8 +11,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import uk.co.yunsoft.cssa.man.object.Page;
 import uk.co.yunsoft.cssa.man.object.UserInfo;
@@ -30,8 +28,7 @@ public class User {
 
 	@GET
 	@Produces("application/json")
-	public List<UserJSObject> getUsers(@HeaderParam("Range") String range,
-			@Context HttpServletResponse response) {
+	public Response getUsers(@HeaderParam("Range") String range) {
 
 		Page page = null;
 
@@ -50,9 +47,8 @@ public class User {
 
 		List<UserJSObject> users = userService.getUsers(page);
 		
-		response.setHeader("Content-Range", range+"/"+page.getTotal());
 
-		return users;
+		return Response.ok(users).header("Content-Range", range+"/"+page.getTotal()).build();
 
 	}
 
