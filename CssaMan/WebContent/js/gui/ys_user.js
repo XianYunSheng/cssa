@@ -1,6 +1,41 @@
 function ys_userDlgStart(reg){
 	
 	
+	var user_type_sel = reg.byId("mgt_user_roler_sel");
+	
+	require(["dojo/request/xhr", "dojo/i18n!js/nls/common.js", "dojo/store/Memory"], function(xhr,common,Memory){
+		
+		 
+			userType_uri = "/" + SYS_PATH +"/api/usertype/";
+		 
+		
+	 
+		xhr(userType_uri,
+				{handleAs: "json", 
+				 headers: { 
+					 		"Content-Type":"application/json",
+					 		"X-Requested-With": "" 
+				 		   },
+				 method:"GET"
+				 }).then(function(data){
+
+					 console.log("callback data", data);
+					 if(data){
+						 user_type_sel.store = new Memory({data:data});
+						 user_type_sel.searchAtt = "label";
+					 }else{
+					 //do nothing
+					 }
+			 
+
+				 },function(err){
+					 alert(common.internal_server_error);
+				 });			
+		
+		
+	});
+	
+	
 	var id, layout, uri, colid, descending;
 	
 	id = "mgt_userDlgGrid";
@@ -22,14 +57,10 @@ function ys_userDlgStart(reg){
 					// 这里需要扩充属性. 但因为后台没有实现接口. 暂时只有这两个
 	          ];
 	
-	if (YS_TEST) {
-		
-		uri = "/" + SYS_PATH + "/test_res/user.json";
-		 
-	} else {
+ 
 		
 	    uri = "/" + SYS_PATH + "/api/user/";
-	}
+	 
 	
 	colid = "username";
 	

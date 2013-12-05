@@ -12,6 +12,8 @@
                         <div data-dojo-type="dijit/Menu">
 
                             <div data-dojo-type="dijit/MenuItem" id="master_article_type_btn"></div>
+                            <div data-dojo-type="dijit/MenuItem" id="master_task_type_btn"></div>
+                            <div data-dojo-type="dijit/MenuItem" id="master_user_type_btn"></div>
                             
                         </div>
                     </div>
@@ -115,6 +117,58 @@
 	<input
 				type="button" data-dojo-type="dijit/form/Button"
 				id="master_article_typeDlgGridToolbar_refresh_btn" tabIndex="-1"
+				intermediateChanges="false" label="刷新"
+				iconClass="dijitEditorIcon dijitEditorIconDelete"> </input>
+</div>
+		
+<div data-dojo-type="dijit/Toolbar" id="master_user_typeDlgGridToolbar" style="display: none; height: 20px; font-size: 12px; padding-bottom: 5px; margin-bottom: 5px;">
+	<input type="button" data-dojo-type="dijit/form/Button" id="master_user_typeDlgGridToolbar_clean_btn" intermediateChanges="false"
+				label="清空" iconClass="dijitEditorIcon dijitEditorIconSep"
+				tabIndex="-1"> </input> 
+	<input type="button"
+				data-dojo-type="dijit/form/Button"
+				id="master_user_typeDlgGridToolbar_insert_btn" tabIndex="-1"
+				intermediateChanges="false" label="提交"
+				iconClass="dijitEditorIcon dijitEditorIconPaste"> </input> 
+	<input
+				type="button" data-dojo-type="dijit/form/Button"
+				id="master_user_typeDlgGridToolbar_change_btn" tabIndex="-1"
+				intermediateChanges="false" label="更改"
+				iconClass="dijitEditorIcon dijitEditorIconSave"> </input> 
+	<input
+				type="button" data-dojo-type="dijit/form/Button"
+				id="master_user_typeDlgGridToolbar_delete_btn" tabIndex="-1"
+				intermediateChanges="false" label="删除"
+				iconClass="dijitEditorIcon dijitEditorIconDelete"> </input> 
+	<input
+				type="button" data-dojo-type="dijit/form/Button"
+				id="master_user_typeDlgGridToolbar_refresh_btn" tabIndex="-1"
+				intermediateChanges="false" label="刷新"
+				iconClass="dijitEditorIcon dijitEditorIconDelete"> </input>
+</div>
+		
+<div data-dojo-type="dijit/Toolbar" id="master_task_typeDlgGridToolbar" style="display: none; height: 20px; font-size: 12px; padding-bottom: 5px; margin-bottom: 5px;">
+	<input type="button" data-dojo-type="dijit/form/Button" id="master_task_typeDlgGridToolbar_clean_btn" intermediateChanges="false"
+				label="清空" iconClass="dijitEditorIcon dijitEditorIconSep"
+				tabIndex="-1"> </input> 
+	<input type="button"
+				data-dojo-type="dijit/form/Button"
+				id="master_task_typeDlgGridToolbar_insert_btn" tabIndex="-1"
+				intermediateChanges="false" label="提交"
+				iconClass="dijitEditorIcon dijitEditorIconPaste"> </input> 
+	<input
+				type="button" data-dojo-type="dijit/form/Button"
+				id="master_task_typeDlgGridToolbar_change_btn" tabIndex="-1"
+				intermediateChanges="false" label="更改"
+				iconClass="dijitEditorIcon dijitEditorIconSave"> </input> 
+	<input
+				type="button" data-dojo-type="dijit/form/Button"
+				id="master_task_typeDlgGridToolbar_delete_btn" tabIndex="-1"
+				intermediateChanges="false" label="删除"
+				iconClass="dijitEditorIcon dijitEditorIconDelete"> </input> 
+	<input
+				type="button" data-dojo-type="dijit/form/Button"
+				id="master_task_typeDlgGridToolbar_refresh_btn" tabIndex="-1"
 				intermediateChanges="false" label="刷新"
 				iconClass="dijitEditorIcon dijitEditorIconDelete"> </input>
 </div>

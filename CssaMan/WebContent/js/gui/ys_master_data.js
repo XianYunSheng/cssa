@@ -4,15 +4,23 @@ function ys_master_data_simpleDlgStart(reg, type){
 	
 	if("article_type" == type){
 		id = "master_article_typeDlgGrid";
-		if (YS_TEST) {
-					
-					uri = "/" + SYS_PATH + "/test_res/user.json";
-					 
-				} else {
-					
-				    uri = "/" + SYS_PATH + "/api/user/";
-				}		
-	}
+		 
+				    uri = "/" + SYS_PATH + "/api/articletype/";
+				 	
+	}else if("task_type" == type){
+		id = "master_task_typeDlgGrid";
+	 
+				    uri = "/" + SYS_PATH + "/api/tasktype/";
+				 	
+		
+	}else if("user_type" == type){
+	    id = "master_user_typeDlgGrid";
+	 
+		
+		uri = "/" + SYS_PATH + "/api/usertype/";
+	 	
+	
+}
 		
 		
 		
@@ -44,7 +52,7 @@ function ys_master_data_simpleDlgStart(reg, type){
 	
 }
 
-function ys_start_mater_data_simple_grid_toolbar(id, reg, type){
+function ys_start_mater_data_simple_grid_toolbar(GridId, reg, type){
 	
 	cleanArr = ["master_" + type + "_code", "master_" + type + "_label"];
 	
@@ -61,5 +69,5 @@ function ys_start_mater_data_simple_grid_toolbar(id, reg, type){
 		label : "" 
 	};
 
-	ys_grid_toolbar_init(gridId, interfaceObj, cleanArr, requestArr, validateArr, dateArr);
+	ys_grid_toolbar_init(GridId, interfaceObj, cleanArr, requestArr, validateArr, dateArr);
 }

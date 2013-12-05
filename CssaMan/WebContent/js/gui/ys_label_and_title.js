@@ -7,6 +7,8 @@ function ys_setGuiLabelAndTitle(){
 			reg.byId("mgt_passwd_recallDlg_ok").set("label", common.btn_ok);
 			reg.byId("mgt_passwd_recallDlg_cl").set("label", common.btn_cancel);
 			reg.byId("master_article_typeDlg_cl").set("label", common.btn_cancel);
+			reg.byId("master_task_typeDlg_cl").set("label", common.btn_cancel);
+			reg.byId("master_user_typeDlg_cl").set("label", common.btn_cancel);
 			reg.byId("mgt_taskDlg_cl").set("label", common.btn_cancel);
 			
 			
@@ -14,6 +16,8 @@ function ys_setGuiLabelAndTitle(){
 			reg.byId("mgt_passwd_recallDlg").set("title", common.passwd_recall);
 			reg.byId("mgt_regDlg").set("title", common.reg_dlg_title);
 			reg.byId("master_article_typeDlg").set("title", common.article_type);
+			reg.byId("master_task_typeDlg").set("title", common.task_type);
+			reg.byId("master_user_typeDlg").set("title", common.user_type);
 			reg.byId("mgt_taskDlg").set("title", common.task_mgt);
  			
 		
@@ -25,7 +29,9 @@ function ys_setGuiLabelAndTitle(){
 			
 			reg.byId("master_article_btn").set("label", common.article_mgt);
 			reg.byId("master_article_type_btn").set("label", common.article_type);
-			
+			reg.byId("master_task_type_btn").set("label", common.task_type);
+			reg.byId("master_user_type_btn").set("label", common.user_type);
+		 
 			reg.byId("welcome_btn").set("label", common.welcome);
 			reg.byId("pw_chg_btn").set("label", common.chg_pw);
 			reg.byId("logout_btn").set("label", common.logout);
@@ -91,6 +97,22 @@ function ys_setGuiLabelAndTitle(){
             reg.byId("master_article_typeDlgGridToolbar_delete_btn").set("label", common.btn_delete);
             reg.byId("master_article_typeDlgGridToolbar_refresh_btn").set("label", common.btn_refresh);
             
+            
+            
+            reg.byId("master_task_typeDlgGridToolbar_clean_btn").set("label", common.btn_clean);
+            reg.byId("master_task_typeDlgGridToolbar_insert_btn").set("label", common.btn_new);
+            reg.byId("master_task_typeDlgGridToolbar_change_btn").set("label", common.btn_update);
+            reg.byId("master_task_typeDlgGridToolbar_delete_btn").set("label", common.btn_delete);
+            reg.byId("master_task_typeDlgGridToolbar_refresh_btn").set("label", common.btn_refresh);
+            
+            
+            
+            reg.byId("master_user_typeDlgGridToolbar_clean_btn").set("label", common.btn_clean);
+            reg.byId("master_user_typeDlgGridToolbar_insert_btn").set("label", common.btn_new);
+            reg.byId("master_user_typeDlgGridToolbar_change_btn").set("label", common.btn_update);
+            reg.byId("master_user_typeDlgGridToolbar_delete_btn").set("label", common.btn_delete);
+            reg.byId("master_user_typeDlgGridToolbar_refresh_btn").set("label", common.btn_refresh);
+            
             reg.byId("mgt_taskDlgGridToolbar_clean_btn").set("label", common.btn_clean);
             reg.byId("mgt_taskDlgGridToolbar_insert_btn").set("label", common.btn_new);
             reg.byId("mgt_taskDlgGridToolbar_change_btn").set("label", common.btn_update);
@@ -111,6 +133,13 @@ function ys_setGuiLabelAndTitle(){
             
             dom.byId("master_article_type_code_lb").innerHTML = "<span class='text_red'>*</span>"+ common.code;
             dom.byId("master_article_type_label_lb").innerHTML = "<span class='text_red'>*</span>"+ common.label;
+            
+            dom.byId("master_task_type_code_lb").innerHTML = "<span class='text_red'>*</span>"+ common.code;
+            dom.byId("master_task_type_label_lb").innerHTML = "<span class='text_red'>*</span>"+ common.label;
+            
+            
+            dom.byId("master_user_type_code_lb").innerHTML = "<span class='text_red'>*</span>"+ common.code;
+            dom.byId("master_user_type_label_lb").innerHTML = "<span class='text_red'>*</span>"+ common.label;
             
             dom.byId("mgt_task_taskTitle_lb").innerHTML = "<span class='text_red'>*</span>"+ common.task_title;
             dom.byId("mgt_task_content_lb").innerHTML = "<span class='text_red'>*</span>"+ common.task_content;

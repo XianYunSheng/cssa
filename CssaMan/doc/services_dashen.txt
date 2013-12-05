@@ -12,6 +12,8 @@ User
 // 新建user, put请求后。 并创建操作后， 返回一个 json obj 如下 {success: true, error:""} 或者 {success: false, error:""} 或者 {success: false, error:"user_exists"} , 后一种说明该用户名存在，无法创建。
 
 
+//
+
 
 +	PUT    /user/$userId        更新id为userid的user
 +	DELETE /user/$userId	删除id为userid的user
@@ -38,7 +40,7 @@ birthday: long, //unix 毫秒时间戳
 college:string,
 major:string,
 position:string //学联职位
-article: string// 发文登记，是否需要审核？ 待讨论
+userTypeId:                   //Jack. 这个是为了user type 而新添加的
 }
 
 
@@ -65,11 +67,13 @@ phpsessid:string
 }
 
 3. article管理
+
 +	GET    /article/	               获得所有article的一个json array.  并且实现filtering和sorting 和paging   
 +	GET    / article /$ article Id	获得id为articleid的article
 +	PUT    / article /                             新建一个article
 +	PUT    / article /$articleid            更新id为articleid            的article
 +	DELETE / article /$articleid	删除id为articleid            的article
+
 json obj:
 
 {
@@ -91,6 +95,73 @@ json obj:
 4. article中间编辑富文本和插入图片, 如果有这个需求， 可能需要jack 读一下这个http://dojotoolkit.org/reference-guide/1.8/dojox/editor/plugins/LocalImage.html#dojox-editor-plugins-localimage
 
 
+
+5. task   //jack, 后四个属性你目前没有. 希望你更改数据表结构
+
+GET /task/
+GET /task/$taskId
+PUT /task/
+PUT /task/$taskId
+DELETE /task/$taskId
+
+{
+id:
+taskTitle:
+content:
+dueDate:
+pubDate:
+taskTypeId:
+creUserId:
+creDate:
+modUserId:
+modDate:
+}
+
+6.   tasktype   // master data 主数据.  这类数据分为简单主数据. simple master data.  为了复用代码, 这类数据的特点是 有一个label, 有一个code, 而系统会自动产生id, 该id是对终端用户不可见的.
+				// 这类数据主要应用在可配置的选项. 比如 task type, article type, user type 职位, 性别, 等等
+
+// 所以jack应该更改目前的tasktype表的数据结构				
+				
+GET /tasktype/
+GET /tasktype/$tasktypeId
+PUT /tasktype/
+PUT /tasktype/$tasktypeId
+DELETE /tasktype/$tasktypeId
+
+{
+id:
+code:
+label:
+}
+
+7.  articletype
+
+GET /articletype/
+GET /articletype/$tasktypeId
+PUT /articletype/
+PUT /articletype/$tasktypeId
+DELETE /articletype/$tasktypeId
+
+{
+id:
+code:
+label:
+}
+
+
+7.  usertype
+
+GET /usertype/
+GET /usertype/$usertypeId
+PUT /usertype/
+PUT /usertype/$usertypeId
+DELETE /usertype/$usertypeId
+
+{
+id:
+code:
+label:
+}
 
 
 

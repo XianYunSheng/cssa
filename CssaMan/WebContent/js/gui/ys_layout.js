@@ -108,6 +108,44 @@ function ys_reg_onclick_event_for_sys(){
 		});
 		
 		
+		//master_task_type_btn type
+		
+		var task_type_btn = reg.byId("master_task_type_btn");
+		on(task_type_btn, "click", function(e){
+			var dlg = reg.byId("master_task_typeDlg");
+			dlg.show();
+			ys_master_data_simpleDlgStart(reg, "task_type");
+			
+		});
+		
+		
+		var userMgt_cl_btn = reg.byId("master_task_typeDlg_cl");
+		on(userMgt_cl_btn, "click", function(e){
+			var dlg = reg.byId("master_task_typeDlg");
+			dlg.hide();
+			
+		});
+		
+		
+		//master_user_type_btn type
+		
+		var user_type_btn = reg.byId("master_user_type_btn");
+		on(user_type_btn, "click", function(e){
+			var dlg = reg.byId("master_user_typeDlg");
+			dlg.show();
+			ys_master_data_simpleDlgStart(reg, "user_type");
+			
+		});
+		
+		
+		var userMgt_cl_btn = reg.byId("master_task_typeDlg_cl");
+		on(userMgt_cl_btn, "click", function(e){
+			var dlg = reg.byId("master_task_typeDlg");
+			dlg.hide();
+			
+		});
+		
+		
 		//task mgt
 		
 		var task_mgt_btn = reg.byId("task_mgt_btn");

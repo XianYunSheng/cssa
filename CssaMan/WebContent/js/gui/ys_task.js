@@ -9,7 +9,7 @@ function ys_taskMgtStart(reg){
 		if(YS_TEST){
 			taskType_uri = "/" + SYS_PATH +"/test_res/tasktype.json";
 		}else{
-			taskType_uri = "/" + SYS_PATH +"/api/taskType/";
+			taskType_uri = "/" + SYS_PATH +"/api/tasktype/";
 		}
 		
 		
@@ -26,7 +26,7 @@ function ys_taskMgtStart(reg){
 					 console.log("callback data", data);
 					 if(data){
 						 task_type_sel.store = new Memory({data:data});
-						 task_type_sel.searchAtt = "typeName";
+						 task_type_sel.searchAtt = "label";
 					 }else{
 					 //do nothing
 					 }
@@ -39,7 +39,7 @@ function ys_taskMgtStart(reg){
 		
 	});
 	
-	task_type_sel
+	 
 
 }
 
@@ -127,8 +127,11 @@ function ys_start_task_grid_toolbar(id, reg){
 		content : reg.byId("mgt_task_content").get("value"),	 
 		dueDate : "", //  时间戳 unix毫秒	 
 		pubDate : "", //  时间戳
-		taskTypeId:""
-
+		taskTypeId:"",
+		creDate:"",
+		modDate:"",
+		creUser:"",
+		modUser:""
 	};
 
 	ys_grid_toolbar_init(gridId, interfaceObj, cleanArr, requestArr, validateArr, dateArr);

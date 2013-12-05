@@ -202,7 +202,7 @@ function ys_grid_insert(gridId, obj, reg) {
 		obj.username = reg.byId("mgt_user_username");
 		obj.name = reg.byId("mgt_user_dispname");
 		obj.email = reg.byId("mgt_user_email");
-		
+		obj.userTypeId = reg.byId("mgt_user_roler_sel");
 		//todo: 适配器他扩充属性
 		
 	}else if("master_article_typeDlgGrid" == gridId){
@@ -211,12 +211,25 @@ function ys_grid_insert(gridId, obj, reg) {
 		obj.label = reg.byId("master_article_type_label");
 	 
 	 
+	}else if("master_task_typeDlgGrid" == gridId){
+		
+		obj.code = reg.byId("master_task_type_code");
+		obj.label = reg.byId("master_task_type_label");
+		
+		
+	}else if("master_user_typeDlgGrid" == gridId){
+		
+		obj.code = reg.byId("master_user_type_code");
+		obj.label = reg.byId("master_user_type_label");
+		
+		
 	}else if("mgt_taskDlgGrid" == gridId){
 	
 		obj.dueDate = reg.byId("mgt_task_dueDate");
 		obj.pubDate = reg.byId("mgt_task_pubDate");
 		obj.taskTypeId = reg.byId("mgt_task_taskType_sel");
-	
+		obj.creDate = new Date().getTime();
+		obj.creUser = YS_MGT_CURRENT_USER.id;
 
 	} 
  
@@ -253,7 +266,7 @@ function ys_grid_update(gridId, row, obj, reg) {
 		obj.username = reg.byId("mgt_user_username");
 		obj.name = reg.byId("mgt_user_dispname");
 		obj.email = reg.byId("mgt_user_email");
-		
+		obj.userTypeId = reg.byId("mgt_user_roler_sel");
 		//todo: 适配器他扩充属性
 		
 	}else if("master_article_typeDlgGrid" == gridId){
@@ -262,13 +275,26 @@ function ys_grid_update(gridId, row, obj, reg) {
 		obj.label = reg.byId("master_article_type_label");
 	 
 	 
+	}else if("master_user_typeDlgGrid" == gridId){
+		
+		obj.code = reg.byId("master_user_type_code");
+		obj.label = reg.byId("master_user_type_label");
+		
+		
 	
+	}else if("master_task_typeDlgGrid" == gridId){
+		
+		obj.code = reg.byId("master_task_type_code");
+		obj.label = reg.byId("master_task_type_label");
+		
+		
 	}else if("mgt_taskDlgGrid" == gridId){
 	
 		obj.dueDate = reg.byId("mgt_task_dueDate");
 		obj.pubDate = reg.byId("mgt_task_pubDate");
 		obj.taskTypeId = reg.byId("mgt_task_taskType_sel");
-	
+		obj.creDate = new Date().getTime();
+		obj.creUser = YS_MGT_CURRENT_USER.id;
 
 	}   
 
@@ -341,6 +367,7 @@ function ys_grid_select_update_page(gridId, reg, row, domConstruct, win){
 		username = reg.byId("mgt_user_username").set("value", row.username);
 		name = reg.byId("mgt_user_dispname").set("value", row.name);
 		email = reg.byId("mgt_user_email").set("value", row.email);
+		userTypeId = reg.byId("mgt_user_roler_sel").set("value", row.userTypeId);
 		
 		//todo: 适配器他扩充属性
 		
@@ -350,6 +377,18 @@ function ys_grid_select_update_page(gridId, reg, row, domConstruct, win){
 		 reg.byId("master_article_type_label").set("value", row.label);
 	 
 	
+	}else if("master_user_typeDlgGrid" == gridId){
+		
+		reg.byId("master_user_type_code").set("value", row.code);
+		reg.byId("master_user_type_label").set("value", row.label);
+		
+		
+	}else if("master_task_typeDlgGrid" == gridId){
+		
+		reg.byId("master_task_type_code").set("value", row.code);
+		reg.byId("master_task_type_label").set("value", row.label);
+		
+		
 	}else if("mgt_taskDlgGrid" == gridId){
 		
 		reg.byId("mgt_task_taskTitle").set("value", row.taskTitle);
@@ -393,4 +432,4 @@ function ys_grid_select_update_page(gridId, reg, row, domConstruct, win){
 	refers_select.set("value",refer_arr);
 	
 }
- *//
+ */ 

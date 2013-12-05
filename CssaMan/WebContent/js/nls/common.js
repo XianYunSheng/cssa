@@ -67,6 +67,7 @@ define({
         task:"任务",
         task_mgt:"任务管理",
         task_type:"任务种类",
+        user_type:"用户种类",
         task_title:"任务名称",
         task_content:"任务内容",
         task_dueDate:"执行时间",

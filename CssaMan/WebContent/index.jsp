@@ -181,6 +181,8 @@
 <jsp:include page="page/passwdForgot.jsp"></jsp:include>
 <jsp:include page="page/registration.jsp"></jsp:include>
 <jsp:include page="page/masterDataArticleType.jsp"></jsp:include>
+<jsp:include page="page/masterDataTaskType.jsp"></jsp:include>
+<jsp:include page="page/masterDataUserType.jsp"></jsp:include>
 <jsp:include page="page/taskMgt.jsp"></jsp:include>
 
 
